@@ -31,6 +31,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Word_Break_II", "Word_Break
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Copy_List_with_Random_Pointer", "Copy_List_with_Random_Pointer\Copy_List_with_Random_Pointer.vcxproj", "{50B84129-CC76-41AE-A3D3-4FA0C573513C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5FC4DFB9-66FD-4095-A39A-7C0A712A7B8A}"
+	ProjectSection(SolutionItems) = preProject
+		LeetCode_Experience.txt = LeetCode_Experience.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32

@@ -1,0 +1,146 @@
+Experience when coding:
+1. Split the algorithm into sub functions as best as you can.
+   When implementing each function, you will get much clear mind and would not mess up everything together.
+   
+2. 
+
+
+[Specific Problems]
+1. Evaluate Reverse Polish Notation
+(1) Did not consider the negative number
+    Last executed input:	["3","-4","+"]
+	So when converting the string of "-4" to number, the '-' is taken as an operator....
+
+    
+3. Reorder_List
+
+    Original codes:
+    ListNode* MergeTwoLists(ListNode* root1, ListNode* root2)
+    {
+        if (root1 == NULL)
+        {
+            return root2;
+        }
+        else if (root2 == NULL)
+        {
+            return root1;
+        }
+
+        ListNode* head = NULL, *tail = NULL;
+
+        while(root1 && root2)
+        {
+            if (head == NULL)
+            {
+                head = tail = root1;
+            }
+            else
+            {
+                tail->next = root1;
+                tail = root1;
+            }
+			
+			(In the above tail = root1, here we set tail->next = root2, so makes us lost the original root1->next !!!)
+
+            tail->next = root2;
+            tail = root2;
+
+            root1 = root1->next;
+            root2 = root2->next;
+        }
+
+        if (root1 == NULL)
+            tail->next = root2;
+        else
+            tail->next = root1;
+
+        return head;
+    }
+	
+	Experience:
+	In the list operation, when finishing traverse one node, please go to the next node immediately!!!
+	
+4. Linked List Cycle II
+   
+   Original Codes:
+	//returns the encouter node and how many nodes node1 and nodes2 passed.
+    ListNode* GetEncounterNodeDifferentPace(ListNode* node1, ListNode* node2, int& passCount)
+    {
+        if (node1 == NULL || node2 == NULL)
+        {
+            passCount = 0;
+            return NULL;
+        }
+
+        passCount = 0;
+
+        while(node1 && node2)
+        {
+            passCount++;
+
+            if (node1 == node2)  << Since node1 and node2 both point to head at first. This condition always succeed!!!
+            {
+                return node1;
+            }
+
+            node1 = node1->next;
+            if (node1 == NULL)
+                return NULL;
+
+            node2 = node2->next;
+            if (node2 == NULL)
+                return NULL;
+            node2 = node2->next;
+        }
+
+        return NULL;        
+    }
+
+5. Word Break II 
+   Input:	"a", ["a"]
+   Output:	["a "]
+   Expected:	["a"]
+   
+    vector<string> wordBreak(string s, unordered_set<string> &dict) {
+        int n = s.size();
+        vector<string> resultCollection;
+
+        if(n == 0)
+            return resultCollection;
+
+        vector<string>*  stringBreakStore = new vector<string>[n+1];
+        stringBreakStore[n].push_back("");
+
+        string substr, res; int size, len;
+
+        for(int i = n - 1; i >= 0; i--)
+        {
+            size = n - i;
+            for(int j = 0; j < size; j++)
+            {
+                substr = s.substr(i, j+1);
+                if(dict.find(substr) == dict.end())
+                    continue;
+
+                if(stringBreakStore[i+j+1].size() == 0)
+                    continue;
+
+                len = stringBreakStore[i+j+1].size();
+                for(int k = 0; k < len; k++)
+                {
+                    res.clear();
+                    res = substr;
+					res += " "; (<<<<<<<<< When stringBreakStore[i+j+1].at(k) is not "" can we add the space)
+					res += stringBreakStore[i+j+1].at(k);
+                    stringBreakStore[i].push_back(res);
+                }
+            }
+        }
+
+        size = stringBreakStore[0].size();
+        for(int i = 0; i < size; i++)
+            resultCollection.push_back(stringBreakStore[0].at(i));
+
+        delete [] stringBreakStore;
+        return resultCollection;     
+    }

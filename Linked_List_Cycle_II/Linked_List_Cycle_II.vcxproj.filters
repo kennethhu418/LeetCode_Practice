@@ -33,4 +33,9 @@
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="循环链表寻找环起点.JPG">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

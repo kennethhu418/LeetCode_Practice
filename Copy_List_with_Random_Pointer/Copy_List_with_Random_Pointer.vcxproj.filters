@@ -33,4 +33,9 @@
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Copy List with Random Pointer.JPG">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>
