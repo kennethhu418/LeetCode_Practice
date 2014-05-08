@@ -42,8 +42,11 @@ public:
                 {
                     res.clear();
                     res = substr;
-                    res += " ";
-                    res += stringBreakStore[i+j+1].at(k);
+					if(stringBreakStore[i+j+1].at(k).size() > 0)
+					{
+						res += " ";
+						res += stringBreakStore[i+j+1].at(k);
+					}
                     stringBreakStore[i].push_back(res);
                 }
             }
