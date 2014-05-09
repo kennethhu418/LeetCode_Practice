@@ -36,6 +36,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LeetCode_Experience.txt = LeetCode_Experience.txt
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Single_Number", "Single_Number\Single_Number.vcxproj", "{A1E21594-E140-4201-A79F-DD28BAF3EC26}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Single_Number_II", "Single_Number_II\Single_Number_II.vcxproj", "{98CCF7B2-319A-4026-8F96-946AEB1DB5E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -98,6 +102,14 @@ Global
 		{50B84129-CC76-41AE-A3D3-4FA0C573513C}.Debug|Win32.Build.0 = Debug|Win32
 		{50B84129-CC76-41AE-A3D3-4FA0C573513C}.Release|Win32.ActiveCfg = Release|Win32
 		{50B84129-CC76-41AE-A3D3-4FA0C573513C}.Release|Win32.Build.0 = Release|Win32
+		{A1E21594-E140-4201-A79F-DD28BAF3EC26}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A1E21594-E140-4201-A79F-DD28BAF3EC26}.Debug|Win32.Build.0 = Debug|Win32
+		{A1E21594-E140-4201-A79F-DD28BAF3EC26}.Release|Win32.ActiveCfg = Release|Win32
+		{A1E21594-E140-4201-A79F-DD28BAF3EC26}.Release|Win32.Build.0 = Release|Win32
+		{98CCF7B2-319A-4026-8F96-946AEB1DB5E4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{98CCF7B2-319A-4026-8F96-946AEB1DB5E4}.Debug|Win32.Build.0 = Debug|Win32
+		{98CCF7B2-319A-4026-8F96-946AEB1DB5E4}.Release|Win32.ActiveCfg = Release|Win32
+		{98CCF7B2-319A-4026-8F96-946AEB1DB5E4}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
