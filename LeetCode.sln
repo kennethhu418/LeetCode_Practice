@@ -46,7 +46,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gas_Station", "Gas_Station\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Clone_Graph", "Clone_Graph\Clone_Graph.vcxproj", "{42FD214F-1025-4E8C-8256-DD78ED293840}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Palindrome Partitioning", "Palindrome Partitioning\Palindrome Partitioning.vcxproj", "{3E7B1705-FB77-4FB7-A624-EE717F78E932}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Palindrome_Partitioning", "Palindrome Partitioning\Palindrome Partitioning.vcxproj", "{3E7B1705-FB77-4FB7-A624-EE717F78E932}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Palindrome_Partitioning_II", "Palindrome_Partitioning_II\Palindrome_Partitioning_II.vcxproj", "{B4220816-A229-448A-B672-4AB86B81EA3E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -134,6 +136,10 @@ Global
 		{3E7B1705-FB77-4FB7-A624-EE717F78E932}.Debug|Win32.Build.0 = Debug|Win32
 		{3E7B1705-FB77-4FB7-A624-EE717F78E932}.Release|Win32.ActiveCfg = Release|Win32
 		{3E7B1705-FB77-4FB7-A624-EE717F78E932}.Release|Win32.Build.0 = Release|Win32
+		{B4220816-A229-448A-B672-4AB86B81EA3E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B4220816-A229-448A-B672-4AB86B81EA3E}.Debug|Win32.Build.0 = Debug|Win32
+		{B4220816-A229-448A-B672-4AB86B81EA3E}.Release|Win32.ActiveCfg = Release|Win32
+		{B4220816-A229-448A-B672-4AB86B81EA3E}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

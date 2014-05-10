@@ -1,11 +1,19 @@
-Experience when coding:
+﻿*****************************************************************************************************************************************
+                                Experience when coding
+*****************************************************************************************************************************************
 1. Split the algorithm into sub functions as best as you can.
    When implementing each function, you will get much clear mind and would not mess up everything together.
    
-2. 
+2. When solving a problem about optimum solution, the first method comes to your mind should be dynamic programming.
+The very first thing about DP is to desolve the original problem into sub problems. 
+First write the recursion codes. Based on the recursion codes, you can get which is the smallest problem and you can start from there to write DP.
 
+One thing that you should remember is that not only the problem directly asked by the question can be desolved into sub problems, but also some along problems to solve the original problem can also be desovled and be solved by DP.
+One typical example is the "Palindrome_Partitioning_II" problem.
 
-[Specific Problems]
+*****************************************************************************************************************************************
+                                   Specific Problems
+*****************************************************************************************************************************************
 1. Evaluate Reverse Polish Notation
 (1) Did not consider the negative number
     Last executed input:	["3","-4","+"]
