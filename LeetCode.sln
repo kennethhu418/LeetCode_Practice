@@ -50,6 +50,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Palindrome_Partitioning", "
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Palindrome_Partitioning_II", "Palindrome_Partitioning_II\Palindrome_Partitioning_II.vcxproj", "{B4220816-A229-448A-B672-4AB86B81EA3E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Surrounded_Regions", "Surrounded_Regions\Surrounded_Regions.vcxproj", "{EA720529-1177-47C6-B535-ADA0749E56CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -140,6 +142,10 @@ Global
 		{B4220816-A229-448A-B672-4AB86B81EA3E}.Debug|Win32.Build.0 = Debug|Win32
 		{B4220816-A229-448A-B672-4AB86B81EA3E}.Release|Win32.ActiveCfg = Release|Win32
 		{B4220816-A229-448A-B672-4AB86B81EA3E}.Release|Win32.Build.0 = Release|Win32
+		{EA720529-1177-47C6-B535-ADA0749E56CF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EA720529-1177-47C6-B535-ADA0749E56CF}.Debug|Win32.Build.0 = Debug|Win32
+		{EA720529-1177-47C6-B535-ADA0749E56CF}.Release|Win32.ActiveCfg = Release|Win32
+		{EA720529-1177-47C6-B535-ADA0749E56CF}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
