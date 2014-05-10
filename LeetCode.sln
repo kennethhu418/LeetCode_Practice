@@ -52,6 +52,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Palindrome_Partitioning_II"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Surrounded_Regions", "Surrounded_Regions\Surrounded_Regions.vcxproj", "{EA720529-1177-47C6-B535-ADA0749E56CF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sum_Root_to_Leaf_Numbers", "Sum_Root_to_Leaf_Numbers\Sum_Root_to_Leaf_Numbers.vcxproj", "{97BC729B-9340-47A8-A308-E70209F2C5AB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Longest_Consecutive_Sequence", "Longest_Consecutive_Sequence\Longest_Consecutive_Sequence.vcxproj", "{E4A38036-8B41-47D5-944C-DA26509B6719}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -146,6 +150,14 @@ Global
 		{EA720529-1177-47C6-B535-ADA0749E56CF}.Debug|Win32.Build.0 = Debug|Win32
 		{EA720529-1177-47C6-B535-ADA0749E56CF}.Release|Win32.ActiveCfg = Release|Win32
 		{EA720529-1177-47C6-B535-ADA0749E56CF}.Release|Win32.Build.0 = Release|Win32
+		{97BC729B-9340-47A8-A308-E70209F2C5AB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{97BC729B-9340-47A8-A308-E70209F2C5AB}.Debug|Win32.Build.0 = Debug|Win32
+		{97BC729B-9340-47A8-A308-E70209F2C5AB}.Release|Win32.ActiveCfg = Release|Win32
+		{97BC729B-9340-47A8-A308-E70209F2C5AB}.Release|Win32.Build.0 = Release|Win32
+		{E4A38036-8B41-47D5-944C-DA26509B6719}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E4A38036-8B41-47D5-944C-DA26509B6719}.Debug|Win32.Build.0 = Debug|Win32
+		{E4A38036-8B41-47D5-944C-DA26509B6719}.Release|Win32.ActiveCfg = Release|Win32
+		{E4A38036-8B41-47D5-944C-DA26509B6719}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

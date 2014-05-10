@@ -11,6 +11,17 @@ First write the recursion codes. Based on the recursion codes, you can get which
 One thing that you should remember is that not only the problem directly asked by the question can be desolved into sub problems, but also some along problems to solve the original problem can also be desovled and be solved by DP.
 One typical example is the "Palindrome_Partitioning_II" problem.
 
+3. When a problem requires O(n) time complexity but you cannot figure it out enen racking your brains, then hash table solution should be the first consideration.
+Typical example: Longest Consecutive Sequence
+
+So how to use hash table in C++?
+    #include <unordered_map>
+    unordered_map<int , bool> hashA;
+    int newKey = 1;
+    hashA[newKey] = true;  //insert
+    if(hashA.find(newKey) != hashA.end())  //search
+         hashA[newKey] = false;  //modify
+
 *****************************************************************************************************************************************
                                    Specific Problems
 *****************************************************************************************************************************************
