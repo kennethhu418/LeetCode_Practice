@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7D6364C3-1884-4CFC-A768-015376027D22}</ProjectGuid>
+    <ProjectGuid>{48CE9DD3-550E-4CEA-9E0A-4B121FB7738B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Word_Ladder</RootNamespace>
+    <RootNamespace>Word_Ladder_II</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -76,7 +76,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="Mistake of version 1.txt" />
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -85,10 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="Word_Ladder.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Version 1 mistake.png" />
+    <ClCompile Include="Word_Ladder_II.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

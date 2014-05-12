@@ -1,0 +1,5 @@
+version 1' s mistake:
+
+See the picture "Version 1 mistake.png" under the same folder.
+
+The shortest path is the left one (wen->wan->waq->caq). When applying version 1 codes, we may start checking the right path first. When transforming to wan on the right path and begin to determine the shortest path, we cannot let wan transform to waq because waq is still on the checking path. So when calculating the shortest path from wan to caq, we may get an 'unoptimal' path (wan->ban->baq->caq). Later we begin checking the left path, when we transformed to wan on the left path, we found we have already got the optimal path (length is 4), so we just return the length of the left path is 1+4 = 5, which you can see is a wrong answer.

@@ -58,6 +58,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Longest_Consecutive_Sequenc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Word_Ladder", "Word_Ladder\Word_Ladder.vcxproj", "{7D6364C3-1884-4CFC-A768-015376027D22}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Word_Ladder_II", "Word_Ladder_II\Word_Ladder_II.vcxproj", "{48CE9DD3-550E-4CEA-9E0A-4B121FB7738B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -164,6 +166,10 @@ Global
 		{7D6364C3-1884-4CFC-A768-015376027D22}.Debug|Win32.Build.0 = Debug|Win32
 		{7D6364C3-1884-4CFC-A768-015376027D22}.Release|Win32.ActiveCfg = Release|Win32
 		{7D6364C3-1884-4CFC-A768-015376027D22}.Release|Win32.Build.0 = Release|Win32
+		{48CE9DD3-550E-4CEA-9E0A-4B121FB7738B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{48CE9DD3-550E-4CEA-9E0A-4B121FB7738B}.Debug|Win32.Build.0 = Debug|Win32
+		{48CE9DD3-550E-4CEA-9E0A-4B121FB7738B}.Release|Win32.ActiveCfg = Release|Win32
+		{48CE9DD3-550E-4CEA-9E0A-4B121FB7738B}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

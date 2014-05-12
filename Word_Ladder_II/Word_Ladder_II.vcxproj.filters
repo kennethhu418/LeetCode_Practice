@@ -16,7 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
-    <Text Include="Mistake of version 1.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -30,13 +29,8 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Word_Ladder.cpp">
+    <ClCompile Include="Word_Ladder_II.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Version 1 mistake.png">
-      <Filter>资源文件</Filter>
-    </Image>
   </ItemGroup>
 </Project>
