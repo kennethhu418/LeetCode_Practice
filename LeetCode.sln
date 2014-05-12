@@ -56,6 +56,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sum_Root_to_Leaf_Numbers", 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Longest_Consecutive_Sequence", "Longest_Consecutive_Sequence\Longest_Consecutive_Sequence.vcxproj", "{E4A38036-8B41-47D5-944C-DA26509B6719}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Word_Ladder", "Word_Ladder\Word_Ladder.vcxproj", "{7D6364C3-1884-4CFC-A768-015376027D22}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -158,6 +160,10 @@ Global
 		{E4A38036-8B41-47D5-944C-DA26509B6719}.Debug|Win32.Build.0 = Debug|Win32
 		{E4A38036-8B41-47D5-944C-DA26509B6719}.Release|Win32.ActiveCfg = Release|Win32
 		{E4A38036-8B41-47D5-944C-DA26509B6719}.Release|Win32.Build.0 = Release|Win32
+		{7D6364C3-1884-4CFC-A768-015376027D22}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7D6364C3-1884-4CFC-A768-015376027D22}.Debug|Win32.Build.0 = Debug|Win32
+		{7D6364C3-1884-4CFC-A768-015376027D22}.Release|Win32.ActiveCfg = Release|Win32
+		{7D6364C3-1884-4CFC-A768-015376027D22}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
