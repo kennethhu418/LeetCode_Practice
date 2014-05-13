@@ -16,7 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
-    <Text Include="Mistake of version 1.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -30,16 +29,11 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Word_Ladder.cpp">
+    <ClCompile Include="Binary_Tree_Maximum_Path_Sum.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Version 1 mistake.png">
-      <Filter>资源文件</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Word Ladder Description.docx" />
+    <None Include="Binary Tree Maximum Path Sum Description.pdf" />
   </ItemGroup>
 </Project>

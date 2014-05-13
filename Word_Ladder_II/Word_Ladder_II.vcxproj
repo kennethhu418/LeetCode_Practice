@@ -86,6 +86,9 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Word_Ladder_II.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Word Ladder Description.docx" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
