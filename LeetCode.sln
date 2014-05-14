@@ -70,6 +70,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Best_Time_to_Buy_and_Sell_S
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Best_Time_to_Buy_and_Sell_Stock_III", "Best_Time_to_Buy_and_Sell_Stock_III\Best_Time_to_Buy_and_Sell_Stock_III.vcxproj", "{5FB018FC-A689-4D9B-BC33-A3850A9AA477}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Triangle", "Triangle\Triangle.vcxproj", "{3279186F-FE7B-4C71-B393-C33455CCFE90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -200,6 +202,10 @@ Global
 		{5FB018FC-A689-4D9B-BC33-A3850A9AA477}.Debug|Win32.Build.0 = Debug|Win32
 		{5FB018FC-A689-4D9B-BC33-A3850A9AA477}.Release|Win32.ActiveCfg = Release|Win32
 		{5FB018FC-A689-4D9B-BC33-A3850A9AA477}.Release|Win32.Build.0 = Release|Win32
+		{3279186F-FE7B-4C71-B393-C33455CCFE90}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3279186F-FE7B-4C71-B393-C33455CCFE90}.Debug|Win32.Build.0 = Debug|Win32
+		{3279186F-FE7B-4C71-B393-C33455CCFE90}.Release|Win32.ActiveCfg = Release|Win32
+		{3279186F-FE7B-4C71-B393-C33455CCFE90}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
