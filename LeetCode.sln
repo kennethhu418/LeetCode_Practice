@@ -72,6 +72,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Best_Time_to_Buy_and_Sell_S
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Triangle", "Triangle\Triangle.vcxproj", "{3279186F-FE7B-4C71-B393-C33455CCFE90}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pascal_Triangle", "Pascal_Triangle\Pascal_Triangle.vcxproj", "{EE2F44C0-4609-4E37-99D0-E20278D18BBC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pascal_Triangle_II", "Pascal_Triangle_II\Pascal_Triangle_II.vcxproj", "{D3C9D34E-055B-41B7-AE37-F503DD702DE4}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Populating_Next_Right_Pointers_in_Each_Node", "Populating_Next_Right_Pointers_in_Each_Node\Populating_Next_Right_Pointers_in_Each_Node.vcxproj", "{279FF8CA-D3D2-462D-8A6A-6DB5971BB489}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Populating_Next_Right_Pointers_in_Each_Node_II", "Populating_Next_Right_Pointers_in_Each_Node_II\Populating_Next_Right_Pointers_in_Each_Node_II.vcxproj", "{2464E066-38C4-45F5-92A0-DB094EF455DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -206,6 +214,22 @@ Global
 		{3279186F-FE7B-4C71-B393-C33455CCFE90}.Debug|Win32.Build.0 = Debug|Win32
 		{3279186F-FE7B-4C71-B393-C33455CCFE90}.Release|Win32.ActiveCfg = Release|Win32
 		{3279186F-FE7B-4C71-B393-C33455CCFE90}.Release|Win32.Build.0 = Release|Win32
+		{EE2F44C0-4609-4E37-99D0-E20278D18BBC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EE2F44C0-4609-4E37-99D0-E20278D18BBC}.Debug|Win32.Build.0 = Debug|Win32
+		{EE2F44C0-4609-4E37-99D0-E20278D18BBC}.Release|Win32.ActiveCfg = Release|Win32
+		{EE2F44C0-4609-4E37-99D0-E20278D18BBC}.Release|Win32.Build.0 = Release|Win32
+		{D3C9D34E-055B-41B7-AE37-F503DD702DE4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D3C9D34E-055B-41B7-AE37-F503DD702DE4}.Debug|Win32.Build.0 = Debug|Win32
+		{D3C9D34E-055B-41B7-AE37-F503DD702DE4}.Release|Win32.ActiveCfg = Release|Win32
+		{D3C9D34E-055B-41B7-AE37-F503DD702DE4}.Release|Win32.Build.0 = Release|Win32
+		{279FF8CA-D3D2-462D-8A6A-6DB5971BB489}.Debug|Win32.ActiveCfg = Debug|Win32
+		{279FF8CA-D3D2-462D-8A6A-6DB5971BB489}.Debug|Win32.Build.0 = Debug|Win32
+		{279FF8CA-D3D2-462D-8A6A-6DB5971BB489}.Release|Win32.ActiveCfg = Release|Win32
+		{279FF8CA-D3D2-462D-8A6A-6DB5971BB489}.Release|Win32.Build.0 = Release|Win32
+		{2464E066-38C4-45F5-92A0-DB094EF455DC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2464E066-38C4-45F5-92A0-DB094EF455DC}.Debug|Win32.Build.0 = Debug|Win32
+		{2464E066-38C4-45F5-92A0-DB094EF455DC}.Release|Win32.ActiveCfg = Release|Win32
+		{2464E066-38C4-45F5-92A0-DB094EF455DC}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
