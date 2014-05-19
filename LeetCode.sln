@@ -112,6 +112,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Same_Tree", "Same_Tree\Same
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Symmetric_Tree", "Symmetric_Tree\Symmetric_Tree.vcxproj", "{BC7AA829-DBD4-447C-BBD3-574BC02A8BB8}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Validate_Binary_Search_Tree", "Validate_Binary_Search_Tree\Validate_Binary_Search_Tree.vcxproj", "{77904099-4436-40C7-9BA0-5065638E2764}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Recover_Binary_Search_Tree", "Recover_Binary_Search_Tree\Recover_Binary_Search_Tree.vcxproj", "{1F68AE46-AFD4-452C-81D8-72FE9D5E1CEE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -326,6 +330,14 @@ Global
 		{BC7AA829-DBD4-447C-BBD3-574BC02A8BB8}.Debug|Win32.Build.0 = Debug|Win32
 		{BC7AA829-DBD4-447C-BBD3-574BC02A8BB8}.Release|Win32.ActiveCfg = Release|Win32
 		{BC7AA829-DBD4-447C-BBD3-574BC02A8BB8}.Release|Win32.Build.0 = Release|Win32
+		{77904099-4436-40C7-9BA0-5065638E2764}.Debug|Win32.ActiveCfg = Debug|Win32
+		{77904099-4436-40C7-9BA0-5065638E2764}.Debug|Win32.Build.0 = Debug|Win32
+		{77904099-4436-40C7-9BA0-5065638E2764}.Release|Win32.ActiveCfg = Release|Win32
+		{77904099-4436-40C7-9BA0-5065638E2764}.Release|Win32.Build.0 = Release|Win32
+		{1F68AE46-AFD4-452C-81D8-72FE9D5E1CEE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1F68AE46-AFD4-452C-81D8-72FE9D5E1CEE}.Debug|Win32.Build.0 = Debug|Win32
+		{1F68AE46-AFD4-452C-81D8-72FE9D5E1CEE}.Release|Win32.ActiveCfg = Release|Win32
+		{1F68AE46-AFD4-452C-81D8-72FE9D5E1CEE}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
