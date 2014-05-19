@@ -94,6 +94,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Maximum_Depth_of_Binary_Tre
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Balanced_Binary_Tree", "Balanced_Binary_Tree\Balanced_Binary_Tree.vcxproj", "{43C35CAB-46A2-480F-BFA5-21A6C528C80F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Convert_Sorted_Array_to_Binary_Search_Tree", "Convert_Sorted_Array_to_Binary_Search_Tree\Convert_Sorted_Array_to_Binary_Search_Tree.vcxproj", "{85541DAA-2438-480A-AEC7-E25E89659AAB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Convert_Sorted_List_to_Binary_Search_Tree", "Convert_Sorted_List_to_Binary_Search_Tree\Convert_Sorted_List_to_Binary_Search_Tree.vcxproj", "{2304C196-03C2-443F-9A98-158ADAD6C622}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -272,6 +276,14 @@ Global
 		{43C35CAB-46A2-480F-BFA5-21A6C528C80F}.Debug|Win32.Build.0 = Debug|Win32
 		{43C35CAB-46A2-480F-BFA5-21A6C528C80F}.Release|Win32.ActiveCfg = Release|Win32
 		{43C35CAB-46A2-480F-BFA5-21A6C528C80F}.Release|Win32.Build.0 = Release|Win32
+		{85541DAA-2438-480A-AEC7-E25E89659AAB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{85541DAA-2438-480A-AEC7-E25E89659AAB}.Debug|Win32.Build.0 = Debug|Win32
+		{85541DAA-2438-480A-AEC7-E25E89659AAB}.Release|Win32.ActiveCfg = Release|Win32
+		{85541DAA-2438-480A-AEC7-E25E89659AAB}.Release|Win32.Build.0 = Release|Win32
+		{2304C196-03C2-443F-9A98-158ADAD6C622}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2304C196-03C2-443F-9A98-158ADAD6C622}.Debug|Win32.Build.0 = Debug|Win32
+		{2304C196-03C2-443F-9A98-158ADAD6C622}.Release|Win32.ActiveCfg = Release|Win32
+		{2304C196-03C2-443F-9A98-158ADAD6C622}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
