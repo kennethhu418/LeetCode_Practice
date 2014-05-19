@@ -22,6 +22,10 @@ So how to use hash table in C++?
     if(hashA.find(newKey) != hashA.end())  //search
          hashA[newKey] = false;  //modify
 
+4. Do not be so stingy to use more variables.
+     If you only consider to use as less variables as possible, you will reuse a variable which you should, which may leads to panic of program.
+     Take the Convert_Sorted_List_to_Binary_Search_Tree project for example. You can compare the original and the modified version.
+
 *****************************************************************************************************************************************
                                    Specific Problems
 *****************************************************************************************************************************************

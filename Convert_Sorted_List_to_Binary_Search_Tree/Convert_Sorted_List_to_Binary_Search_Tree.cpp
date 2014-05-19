@@ -70,15 +70,16 @@ private:
         TreeNode* subTree = sortedListToBST(head, leftNum, tail);
         assert(subTree && tail && tail->next);
 
-        root = new TreeNode(tail->next->val);
+        ListNode* rootListNode = tail->next;
+        root = new TreeNode(rootListNode->val);
         root->left = subTree;
-        listTail = tail->next;
+        listTail = rootListNode;
 
         if (rightNum)
         {
             assert(tail->next->next);
             tail = NULL;
-            subTree = sortedListToBST(tail->next->next, rightNum, tail);
+            subTree = sortedListToBST(rootListNode->next, rightNum, tail);
             root->right = subTree;
             listTail = tail;
         }
