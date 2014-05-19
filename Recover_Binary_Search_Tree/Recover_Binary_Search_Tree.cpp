@@ -25,7 +25,7 @@ public:
         TreeNode* swappedNode1 = NULL, *swappedNode2 = NULL;
 
         findSwappedElements(root, smallerValue, largerValue, minVal, maxVal, swappedNode1, swappedNode2);
-        assert(swappedNode1 && swappedNode2);
+        assert(swappedNode1 && swappedNode2 && swappedNode1->val > swappedNode2->val);
 
         swappedNode1->val ^= swappedNode2->val;
         swappedNode2->val ^= swappedNode1->val;
@@ -33,62 +33,71 @@ public:
     }
 
 private:
-    void findSwappedElements(TreeNode* node, int curSmallerValue, int curLargerValue,
+    bool findSwappedElements(TreeNode* node, int curSmallerValue, int curLargerValue,
         int &minVal, int &maxVal,
-        TreeNode* &foundSwappedNode1, TreeNode* &foundSwappedNode2)
+        TreeNode* &foundSwappedNodeLargeOne, TreeNode* &foundSwappedNodeSmallOne)
     {
         if (node == NULL)
-            return;
+            return true;
 
         minVal = maxVal = node->val;
         int childMinVal, childMaxVal;
 
         int curNodeSmallerVal = curSmallerValue, curNodeLargerVal = curLargerValue;
+        bool whetherContinue = true;
 
         if (node->left)
         {
-            findSwappedElements(node->left, curSmallerValue, node->val, childMinVal, childMaxVal, foundSwappedNode1, foundSwappedNode2);
-            if (foundSwappedNode1 != NULL && foundSwappedNode2 != NULL)
-                return;
+            whetherContinue = findSwappedElements(node->left, curSmallerValue, node->val, childMinVal, childMaxVal, foundSwappedNodeLargeOne, foundSwappedNodeSmallOne);
+            if (!whetherContinue)
+                return false;
+
             minVal = childMinVal;
             curNodeSmallerVal = childMaxVal;
         }
 
         if (node->right)
         {
-            findSwappedElements(node->right, node->val, curLargerValue, childMinVal, childMaxVal, foundSwappedNode1, foundSwappedNode2);
-            if (foundSwappedNode1 != NULL && foundSwappedNode2 != NULL)
-                return;
+            whetherContinue = findSwappedElements(node->right, node->val, curLargerValue, childMinVal, childMaxVal, foundSwappedNodeLargeOne, foundSwappedNodeSmallOne);
+            if (!whetherContinue)
+                return false;
+
             maxVal = childMaxVal;
             curNodeLargerVal = childMinVal;
         }
 
-        if (node->val > curNodeSmallerVal && node->val > curNodeLargerVal)
-        {
-            if (foundSwappedNode1 == NULL)
-                foundSwappedNode1 = node;
-            else if (foundSwappedNode2 == NULL)
-                foundSwappedNode2 = node;
-            else
-                assert(0);
-        }
+        if (foundSwappedNodeLargeOne == NULL && node->val > curNodeSmallerVal && node->val > curNodeLargerVal)
+            foundSwappedNodeLargeOne = node;
 
         if (node->val < curNodeSmallerVal && node->val < curNodeLargerVal)
         {
-            if (foundSwappedNode1 == NULL)
-                foundSwappedNode1 = node;
-            else if (foundSwappedNode2 == NULL)
-                foundSwappedNode2 = node;
-            else
-                assert(0);
+            if (foundSwappedNodeSmallOne != NULL)
+            {
+                foundSwappedNodeSmallOne = node;
+                return false;
+            }
+
+            foundSwappedNodeSmallOne = node;            
         }
 
-        return;
+        return true;
     }
 };
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+    TreeNode node1 = { 4 };
+    TreeNode node2 = { 3 };
+    TreeNode node3 = { 2 };
+    TreeNode node4 = { 1 };
+
+    node1.right = &node2;
+    node2.left = &node3;
+    node2.right = &node4;
+
+    Solution s;
+    s.recoverTree(&node1);
+
 	return 0;
 }
 
