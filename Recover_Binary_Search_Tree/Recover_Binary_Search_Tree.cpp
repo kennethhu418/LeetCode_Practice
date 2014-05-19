@@ -33,24 +33,25 @@ public:
     }
 
 private:
-    bool findSwappedElements(TreeNode* node, int curSmallerValue, int curLargerValue,
+    void findSwappedElements(TreeNode* node, int curSmallerValue, int curLargerValue,
         int &minVal, int &maxVal,
         TreeNode* &foundSwappedNodeLargeOne, TreeNode* &foundSwappedNodeSmallOne)
     {
         if (node == NULL)
-            return true;
+            return;
 
         minVal = maxVal = node->val;
         int childMinVal, childMaxVal;
 
         int curNodeSmallerVal = curSmallerValue, curNodeLargerVal = curLargerValue;
-        bool whetherContinue = true;
+
+        TreeNode* foundSwappedNodeInLeftChildLargeOne = NULL, *foundSwappedNodeInLeftChildSmallOne = NULL;
+        TreeNode* foundSwappedNodeInRightChildLargeOne = NULL, *foundSwappedNodeInRightChildSmallOne = NULL;
 
         if (node->left)
         {
-            whetherContinue = findSwappedElements(node->left, curSmallerValue, node->val, childMinVal, childMaxVal, foundSwappedNodeLargeOne, foundSwappedNodeSmallOne);
-            if (!whetherContinue)
-                return false;
+            findSwappedElements(node->left, curSmallerValue, node->val, childMinVal, childMaxVal,
+                foundSwappedNodeInLeftChildLargeOne, foundSwappedNodeInLeftChildSmallOne);
 
             minVal = childMinVal;
             curNodeSmallerVal = childMaxVal;
@@ -58,29 +59,22 @@ private:
 
         if (node->right)
         {
-            whetherContinue = findSwappedElements(node->right, node->val, curLargerValue, childMinVal, childMaxVal, foundSwappedNodeLargeOne, foundSwappedNodeSmallOne);
-            if (!whetherContinue)
-                return false;
+            findSwappedElements(node->right, node->val, curLargerValue, childMinVal, childMaxVal,
+                foundSwappedNodeInRightChildLargeOne, foundSwappedNodeInRightChildSmallOne);
 
             maxVal = childMaxVal;
             curNodeLargerVal = childMinVal;
         }
 
-        if (foundSwappedNodeLargeOne == NULL && node->val > curNodeSmallerVal && node->val > curNodeLargerVal)
+        foundSwappedNodeLargeOne = foundSwappedNodeInLeftChildLargeOne ? foundSwappedNodeInLeftChildLargeOne : foundSwappedNodeInRightChildLargeOne;
+        foundSwappedNodeSmallOne = foundSwappedNodeInRightChildSmallOne ? foundSwappedNodeInRightChildSmallOne : foundSwappedNodeInLeftChildSmallOne;
+
+        if (!foundSwappedNodeInLeftChildLargeOne && node->val > curNodeSmallerVal && node->val > curNodeLargerVal)
             foundSwappedNodeLargeOne = node;
 
-        if (node->val < curNodeSmallerVal && node->val < curNodeLargerVal)
-        {
-            if (foundSwappedNodeSmallOne != NULL)
-            {
-                foundSwappedNodeSmallOne = node;
-                return false;
-            }
+        if (!foundSwappedNodeInRightChildSmallOne && node->val < curNodeSmallerVal && node->val < curNodeLargerVal)
+            foundSwappedNodeSmallOne = node;
 
-            foundSwappedNodeSmallOne = node;            
-        }
-
-        return true;
     }
 };
 
