@@ -30,7 +30,7 @@ public:
 
         //bool    **resultA = (bool**)(buffer + m*n*sizeof(bool));        
         //for (int i = 0; i < m; i++)
-        //    resultA[i] = (bool*)(resultA + i*n*sizeof(bool));
+        //    resultA[i] = (bool*)(buffer + i*n*sizeof(bool));
 
         m--;    n--;
         resultA[m][n] = true;
@@ -56,8 +56,19 @@ public:
             for (int j = n - 1; j >= 0; j--)
             {
                 if (s1[i] == s3[i + j])
+                {
                     resultA[i][j] = resultA[i + 1][j];
-                else if (s2[j] == s3[i + j])
+                    if (resultA[i][j])  
+                        continue;
+                    //s1[i] maybe the same character with s2[j], so when we choose s1[i] as the current character 
+                    //for s3 but fails, we should also try s2[j].
+                    //For example, s1 = "aa" and s2 = "ab", s3 = "aaba". In previous version codes, we judge
+                    //s1[0] == s3[0], so we directly let resultA[0][0] = resultA[1][0], and you can see the sub
+                    //strings s1[1..] and s2[0..] cannot be interleaved to s3[1..]. But if we check result[0][1]
+                    //we would found that we can get s3[1..] from s1[0..] and s2[1..]
+                } 
+                
+                if (s2[j] == s3[i + j])
                     resultA[i][j] = resultA[i][j + 1];
                 else
                     resultA[i][j] = false;

@@ -26,6 +26,14 @@ So how to use hash table in C++?
      If you only consider to use as less variables as possible, you will reuse a variable which you should, which may leads to panic of program.
      Take the Convert_Sorted_List_to_Binary_Search_Tree project for example. You can compare the original and the modified version.
 
+5. Practice the DP problems as many as possible
+When solving DP problem, do not consider too much and let yourself "脑子一团浆糊". Just define sub problems well and when writing codes,
+make clear what is current problem and what is sub problem.
+
+For example:
+Interleaving string
+
+
 *****************************************************************************************************************************************
                                    Specific Problems
 *****************************************************************************************************************************************
@@ -167,3 +175,6 @@ So how to use hash table in C++?
         delete [] stringBreakStore;
         return resultCollection;     
     }
+
+    6. Interleaving_String
+    See the different versions of the code, we did not consider too well about two character same case.
