@@ -116,6 +116,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Validate_Binary_Search_Tree
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Recover_Binary_Search_Tree", "Recover_Binary_Search_Tree\Recover_Binary_Search_Tree.vcxproj", "{1F68AE46-AFD4-452C-81D8-72FE9D5E1CEE}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Interleaving_String", "Interleaving_String\Interleaving_String.vcxproj", "{90D6B488-8237-471D-AAFF-604B2AA3301A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -338,6 +340,10 @@ Global
 		{1F68AE46-AFD4-452C-81D8-72FE9D5E1CEE}.Debug|Win32.Build.0 = Debug|Win32
 		{1F68AE46-AFD4-452C-81D8-72FE9D5E1CEE}.Release|Win32.ActiveCfg = Release|Win32
 		{1F68AE46-AFD4-452C-81D8-72FE9D5E1CEE}.Release|Win32.Build.0 = Release|Win32
+		{90D6B488-8237-471D-AAFF-604B2AA3301A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{90D6B488-8237-471D-AAFF-604B2AA3301A}.Debug|Win32.Build.0 = Debug|Win32
+		{90D6B488-8237-471D-AAFF-604B2AA3301A}.Release|Win32.ActiveCfg = Release|Win32
+		{90D6B488-8237-471D-AAFF-604B2AA3301A}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
