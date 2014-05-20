@@ -13,41 +13,32 @@ public:
         int n = s.size();
 
         if (n == 0) return n;
+
+        if (s[0] == '0')
+            return 0;
+
         if (n == 1)
-        {
-            if (s[0] == '0')
-                return 0;
             return n;
-        }
 
         int *countArr = new int[n + 1];
         countArr[n] = countArr[n - 1] = 1;
-        bool encounterValidC = false;
-
-        if (s[n - 1] != '0')   encounterValidC = true;
+        if (s[n - 1] == '0') countArr[n - 1] = 0;
 
         for (int pos = n - 2; pos >= 0; pos--)
         {
-            if (s[pos] == '0')
-                countArr[pos] = countArr[pos + 1];
-            else
+            if (s[pos] == '0' && s[pos + 1] == '0')
             {
-                if (!encounterValidC)
-                {
-                    countArr[pos] = 1;
-                    encounterValidC = true;
-                }
-                else
-                    countArr[pos] = countArr[pos + 1];
-
-                int getNum = strToNum(s, pos, 2);
-                if (getNum < 27)
-                    countArr[pos] += countArr[pos + 2];
+                delete[] countArr;
+                return 0;
             }
 
+            countArr[pos] = countArr[pos + 1];
+
+            if (s[pos] != '0' && strToNum(s, pos, 2) < 27)
+                countArr[pos] += countArr[pos + 2];
         }
 
-        int retVal = encounterValidC ? countArr[0] : 0;
+        int retVal = countArr[0];
         delete[] countArr;
         return retVal;
     }
