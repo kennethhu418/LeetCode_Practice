@@ -26,16 +26,15 @@ public:
 
         for (int pos = n - 2; pos >= 0; pos--)
         {
-            if (s[pos] == '0' && s[pos + 1] == '0')
+            if (s[pos] == '0')
+                countArr[pos] = 0;
+            else
             {
-                delete[] countArr;
-                return 0;
+                countArr[pos] = countArr[pos + 1];
+
+                if (strToNum(s, pos, 2) < 27)
+                    countArr[pos] += countArr[pos + 2];
             }
-
-            countArr[pos] = countArr[pos + 1];
-
-            if (s[pos] != '0' && strToNum(s, pos, 2) < 27)
-                countArr[pos] += countArr[pos + 2];
         }
 
         int retVal = countArr[0];
