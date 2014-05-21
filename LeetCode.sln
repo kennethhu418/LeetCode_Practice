@@ -130,6 +130,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Binary_Tree_Inorder_Travers
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Restore_IP_Addresses", "Restore_IP_Addresses\Restore_IP_Addresses.vcxproj", "{497A03EE-DFF4-49F8-B379-23F8A1CC30D7}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Subsets_II", "Subsets_II\Subsets_II.vcxproj", "{60FB78BC-AC82-4B17-915B-7F97955A6150}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -380,6 +382,10 @@ Global
 		{497A03EE-DFF4-49F8-B379-23F8A1CC30D7}.Debug|Win32.Build.0 = Debug|Win32
 		{497A03EE-DFF4-49F8-B379-23F8A1CC30D7}.Release|Win32.ActiveCfg = Release|Win32
 		{497A03EE-DFF4-49F8-B379-23F8A1CC30D7}.Release|Win32.Build.0 = Release|Win32
+		{60FB78BC-AC82-4B17-915B-7F97955A6150}.Debug|Win32.ActiveCfg = Debug|Win32
+		{60FB78BC-AC82-4B17-915B-7F97955A6150}.Debug|Win32.Build.0 = Debug|Win32
+		{60FB78BC-AC82-4B17-915B-7F97955A6150}.Release|Win32.ActiveCfg = Release|Win32
+		{60FB78BC-AC82-4B17-915B-7F97955A6150}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
