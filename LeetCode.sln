@@ -138,6 +138,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Merge_Sorted_Array", "Merge
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Scramble_String", "Scramble_String\Scramble_String.vcxproj", "{3DB1B0CA-F2C6-4514-ADAE-0E4225EC35F8}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Partition_List", "Partition_List\Partition_List.vcxproj", "{BB344EA3-5A70-481D-B513-7E53448587E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -404,6 +406,10 @@ Global
 		{3DB1B0CA-F2C6-4514-ADAE-0E4225EC35F8}.Debug|Win32.Build.0 = Debug|Win32
 		{3DB1B0CA-F2C6-4514-ADAE-0E4225EC35F8}.Release|Win32.ActiveCfg = Release|Win32
 		{3DB1B0CA-F2C6-4514-ADAE-0E4225EC35F8}.Release|Win32.Build.0 = Release|Win32
+		{BB344EA3-5A70-481D-B513-7E53448587E7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BB344EA3-5A70-481D-B513-7E53448587E7}.Debug|Win32.Build.0 = Debug|Win32
+		{BB344EA3-5A70-481D-B513-7E53448587E7}.Release|Win32.ActiveCfg = Release|Win32
+		{BB344EA3-5A70-481D-B513-7E53448587E7}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
