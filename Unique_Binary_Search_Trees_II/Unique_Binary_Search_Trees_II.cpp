@@ -21,6 +21,43 @@ typedef struct __QElem
     int                  isLeftChild;
 }QElem;
 
+class Solution_Recursive {
+public:
+    vector<TreeNode *> generateTrees(int n) {
+        return generateTrees(1, n);
+    }
+
+private:
+    vector<TreeNode* > generateTrees(int start, int end) {
+        vector<TreeNode *>  result;
+
+        if (start > end)
+        {
+            result.push_back(NULL);
+            return result;
+        }
+
+        for (int curRoot = start; curRoot <= end; curRoot++)
+        {
+            vector<TreeNode*>   leftTrees = generateTrees(start, curRoot - 1);
+            vector<TreeNode*>   rightTrees = generateTrees(curRoot + 1, end);
+
+            for (int i = 0; i < leftTrees.size(); i++)
+            {
+                for (int j = 0; j < rightTrees.size(); j++)
+                {
+                    TreeNode*   root = new TreeNode(curRoot);
+                    root->left = leftTrees[i];
+                    root->right = rightTrees[j];
+                    result.push_back(root);
+                }
+            }
+        }
+
+        return result;
+    };
+};
+
 class Solution {
 public:
     vector<TreeNode *> generateTrees(int n) {

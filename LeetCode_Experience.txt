@@ -36,7 +36,15 @@ Interleaving string
 Decode Ways
   从 decode ways这道题目提交4次才成功可以看出，并没有完全理解这样一个原理：子问题和原问题是一模一样的，不要考虑太多！！！ 比如原问题中如果字符串的第一个字符为0，那么
   字符串的decode ways就为0；同样的，对于子问题也是这样呀。当当前字符为0时，那么从当前字符开始的字符串的decode ways就为0.
+Subsets II
 
+6. 有些问题不要一味地追求DP解法，如果说用递归解法的复杂度是常量，与问题规模无关，那么我们就完全可以用递归解法了。
+比如Restore IP Addreses. 用递归解法的代码量远比DP解法的代码量小得多.
+再比如Unique Binary Search Trees中，用非递归的DP解法会造成大量的树的拷贝，而用递归解法就不用大量拷贝。
+
+7. The two directions to split a problem to sub problems:
+(1) Decrease the scale of the original problem. The sub problem is the one with a smaller scale
+(2) Transform the original data to another data. The sub problem is the one with the same scale as the original problem.
 
 *****************************************************************************************************************************************
                                    Specific Problems
