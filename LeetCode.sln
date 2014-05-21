@@ -140,6 +140,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Scramble_String", "Scramble
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Partition_List", "Partition_List\Partition_List.vcxproj", "{BB344EA3-5A70-481D-B513-7E53448587E7}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Maximal_Rectangle", "Maximal_Rectangle\Maximal_Rectangle.vcxproj", "{F47EE799-5DE4-4A0A-BBB2-C2ACA26DDF2F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -410,6 +412,10 @@ Global
 		{BB344EA3-5A70-481D-B513-7E53448587E7}.Debug|Win32.Build.0 = Debug|Win32
 		{BB344EA3-5A70-481D-B513-7E53448587E7}.Release|Win32.ActiveCfg = Release|Win32
 		{BB344EA3-5A70-481D-B513-7E53448587E7}.Release|Win32.Build.0 = Release|Win32
+		{F47EE799-5DE4-4A0A-BBB2-C2ACA26DDF2F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F47EE799-5DE4-4A0A-BBB2-C2ACA26DDF2F}.Debug|Win32.Build.0 = Debug|Win32
+		{F47EE799-5DE4-4A0A-BBB2-C2ACA26DDF2F}.Release|Win32.ActiveCfg = Release|Win32
+		{F47EE799-5DE4-4A0A-BBB2-C2ACA26DDF2F}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
