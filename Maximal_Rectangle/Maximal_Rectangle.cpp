@@ -3,163 +3,148 @@
 
 #include "stdafx.h"
 #include <vector>
-#include <iostream>
+#include <stack>
+#include <assert.h>
 
 using namespace std;
-
-typedef struct __ResPoint
-{
-    int width;
-    int height;
-    int width_line_length;
-    int height_line_length;
-    __ResPoint(int w = 0, int h = 0, int wl = 0, int hl = 0){ width = w; height = h; width_line_length = wl; height_line_length = hl; }
-}ResPoint;
 
 class Solution {
 public:
     int maximalRectangle(vector<vector<char> > &matrix) {
-        int m = matrix.size();
-        if (m == 0)
-            return 0;
+        vector<vector<int>>     verticalLineLengthOfPoints;
+        int rows = matrix.size();
+        if (rows == 0)  return 0;
+        int cols = matrix[0].size();
+        if (cols == 0)  return 0;
 
-        int n = matrix[0].size();
-        if (n == 0)
-            return 0;
+        getVerticalLineLengthOfPoints(matrix, verticalLineLengthOfPoints);
 
-        ResPoint**  resArr = new ResPoint*[m];
-        ResPoint zeroResult = {0,0,0,0};
-        ResPoint    right, down;
-        for (int i = 0; i < m; i++)
-            resArr[i] = new ResPoint[n];
+        int maxRectArea = 0;
+        int curRowMaxRectArea = 0;
 
-        int     maxRegion = 0;
-        resArr[m - 1][n - 1] = (matrix[m - 1][n - 1] == '0' ? zeroResult : ResPoint(1, 1, 1, 1));
-        if (resArr[m - 1][n - 1].width > maxRegion)
-            maxRegion = resArr[m - 1][n - 1].width;
-
-        for (int i = m - 2; i >= 0; i--)
+        for (int i = 0; i < rows; i++)
         {
-            if (matrix[i][n - 1] == '0')
-                resArr[i][n - 1] = zeroResult;
-            else
-                resArr[i][n - 1] = ResPoint(1, 1 + resArr[i + 1][n - 1].height, 1, 1 + resArr[i + 1][n - 1].height);
-
-            if (resArr[i][n - 1].height > maxRegion)
-                maxRegion = resArr[i][n - 1].height;
+            curRowMaxRectArea = getMaxRectAreaInHist(verticalLineLengthOfPoints[i]);
+            if (curRowMaxRectArea > maxRectArea)
+                maxRectArea = curRowMaxRectArea;
         }
 
-        for (int i = n - 2; i >= 0; i--)
-        {
-            if (matrix[m - 1][i] == '0')
-                resArr[m - 1][i] = zeroResult;
-            else
-                resArr[m - 1][i] = ResPoint(1 + resArr[m - 1][i + 1].width, 1, 1 + resArr[m - 1][i + 1].width, 1);
-            
-            if (resArr[m-1][i].width > maxRegion)
-                maxRegion = resArr[m - 1][i].width;
-        }
-
-        for (int i = m - 2, j = n - 2; i >= 0 && j >= 0; i--, j--)
-        {
-            for (int k = j; k >= 0; k--)
-            {
-                if (matrix[i][k] == '0')
-                {
-                    resArr[i][k] = zeroResult;
-                    continue;
-                }
-
-                right = resArr[i][k + 1];
-                down = resArr[i+1][k];
-
-                int curMax = 0;
-                resArr[i][k].width_line_length = 1 + right.width_line_length;
-                resArr[i][k].height_line_length = 1 + down.height_line_length;
-                curMax = getMax(resArr[i][k].width_line_length, resArr[i][k].height_line_length);
-
-                int rightDownRectWidth = getMin(right.width, down.width - 1);
-                int rightDownRectHeight = getMin(right.height - 1, down.height);
-                if (rightDownRectWidth > 0 && rightDownRectHeight > 0)
-                {
-                    resArr[i][k].width = rightDownRectWidth + 1;
-                    resArr[i][k].height = rightDownRectHeight + 1;
-                    if (resArr[i][k].width*resArr[i][k].height > curMax)
-                        curMax = resArr[i][k].width*resArr[i][k].height;
-                }
-
-                if (curMax > maxRegion)
-                    maxRegion = curMax;
-            }
-
-            for (int k = i-1; k >= 0; k--)
-            {
-                if (matrix[k][j] == '0')
-                {
-                    resArr[k][j] = zeroResult;
-                    continue;
-                }
-
-                right = resArr[k][j+1];
-                down = resArr[k+1][j];
-
-                int curMax = 0;
-                resArr[k][j].width_line_length = 1 + right.width_line_length;
-                resArr[k][j].height_line_length = 1 + down.height_line_length;
-                curMax = getMax(resArr[k][j].width_line_length, resArr[k][j].height_line_length);
-
-                int rightDownRectWidth = getMin(right.width, down.width - 1);
-                int rightDownRectHeight = getMin(right.height - 1, down.height);
-                if (rightDownRectWidth > 0 && rightDownRectHeight > 0)
-                {
-                    resArr[k][j].width = rightDownRectWidth + 1;
-                    resArr[k][j].height = rightDownRectHeight + 1;
-                    if (resArr[k][j].width*resArr[k][j].height > curMax)
-                        curMax = resArr[k][j].width*resArr[k][j].height;
-                }
-
-                if (curMax > maxRegion)
-                    maxRegion = curMax;
-            }
-        }
-
-        for (int i = 0; i < m; i++)
-            delete[] resArr[i];
-        delete[] resArr;
-
-        return maxRegion;
+        return maxRectArea;
     }
 
 private:
-    inline int getMax(int a, int b)
+    void    getVerticalLineLengthOfPoints(const vector<vector<char> > &matrix, vector<vector<int>>& resultArr)
     {
-        return a > b ? a : b;
+        int     rows = matrix.size();
+        if (rows == 0)  return;
+        int     cols = matrix[0].size();
+        if (cols == 0) return;
+
+        resultArr.resize(rows);
+        for (int i = 0; i < rows; i++)
+            resultArr[i].resize(cols);
+
+        for (int i = 0; i < cols; i++)
+        {
+            if (matrix[rows - 1][i] == '0')
+                resultArr[rows - 1][i] = 0;
+            else
+                resultArr[rows - 1][i] = 1;
+        }
+
+        for (int i = rows - 2; i >= 0; i--)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                if (matrix[i][j] == '0')
+                    resultArr[i][j] = 0;
+                else
+                    resultArr[i][j] = 1 + resultArr[i + 1][j];
+            }
+        }
+
+        return;
     }
 
-    inline int getMin(int a, int b)
-    {
-        return a < b ? a : b;
+    int getMaxRectAreaInHist(vector<int> &height) {
+        int     n = height.size();
+        if (n == 0)
+            return 0;
+
+        if (n == 1)
+            return height[0];
+
+        /*data stack is to store each height. And the heights stored in the stack
+        *are in non-decending order from bottom to top*/
+        stack<int>  dataStack;
+        /*Each element in width stack is corresponding to each height in data stack.
+        * It records how many consecutive heights in the current height's left
+        * side are smaller than the current height, so the current width means
+        * how many width can the current height be extended to the left side
+        * to form a rectangle.*/
+        stack<int>  widthStack;
+        int     maxRectArea = height[0];
+        dataStack.push(height[0]);
+        widthStack.push(1);
+        int     originalLastHeight = height[n - 1];
+        int     curIndex = 1;
+        bool  hasPushedEndData = false;
+        int     curWidth = 0;
+        int     curArea = 0;
+
+        while (curIndex < n)
+        {
+            assert(!dataStack.empty());
+            assert(!widthStack.empty());
+
+            if (height[curIndex] >= dataStack.top())
+            {
+                dataStack.push(height[curIndex]);
+                widthStack.push(1);
+            }
+            else
+            {
+                curWidth = 0;
+                while (!dataStack.empty() && dataStack.top() > height[curIndex])
+                {
+                    assert(!widthStack.empty());
+                    curWidth += widthStack.top();
+                    curArea = curWidth*dataStack.top();
+                    widthStack.pop();
+                    dataStack.pop();
+                    if (curArea > maxRectArea)
+                        maxRectArea = curArea;
+                }
+
+                dataStack.push(height[curIndex]);
+                widthStack.push((1 + curWidth));
+            }
+
+            if (!hasPushedEndData && curIndex + 1 == n)
+            {
+                height[curIndex] = 0;
+                hasPushedEndData = true;
+                continue;
+            }
+
+            curIndex++;
+        }
+
+        height[n - 1] = originalLastHeight;
+        return maxRectArea;
     }
 };
 
-
 int _tmain(int argc, _TCHAR* argv[])
 {
-    vector<char> v;
+    vector<char>    v;
+    v.push_back('0');
     v.push_back('1');
-    v.push_back('1');
-    v.push_back('1');
-    v.push_back('1');
-
-    vector<vector<char>> vv;
-    vv.push_back(v);
-    vv.push_back(v);
+    vector<vector<char>>    vv;
     vv.push_back(v);
 
-    Solution so;
-    cout<<so.maximalRectangle(vv)<<endl<<endl;
+    Solution    so;
+    so.maximalRectangle(vv);
 
-    system("PAUSE");
-	return 0;
+    return 0;
 }
-
