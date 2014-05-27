@@ -38,6 +38,8 @@ Decode Ways
   字符串的decode ways就为0；同样的，对于子问题也是这样呀。当当前字符为0时，那么从当前字符开始的字符串的decode ways就为0.
 Subsets II
 Scramble String
+Combinations 
+
 
 6. 有些问题不要一味地追求DP解法，如果说用递归解法的复杂度是常量，与问题规模无关，那么我们就完全可以用递归解法了。
 比如Restore IP Addreses. 用递归解法的代码量远比DP解法的代码量小得多.
@@ -191,3 +193,9 @@ Scramble String
 
     6. Interleaving_String
     See the different versions of the code, we did not consider too well about two character same case.
+
+    7. Minimum Window Substring
+    This is a typical and complex code algorithm!
+
+    8. Sort Colors
+    虽然代码一次成功，但是自己想出来的这个思想还是应当仔细体会
