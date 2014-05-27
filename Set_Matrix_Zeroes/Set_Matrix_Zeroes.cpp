@@ -12,18 +12,44 @@ public:
         int     m = matrix.size();  if (m == 0) return;
         int     n = matrix[0].size();   if (n == 0) return;
 
-        MarkHeaders(matrix);
+        bool    firstRowZero = false, firstColZero = false;
+
+        MarkHeaders(matrix, firstRowZero, firstColZero);
         SetZeros(matrix);
+
+        if (firstRowZero)
+            InvalidateRow(matrix, 0);
+        if (firstColZero)
+            InvalidateColumn(matrix, 0);
     }
 
 private:
-    void MarkHeaders(vector<vector<int> > &matrix)
+    void MarkHeaders(vector<vector<int> > &matrix, bool &firstRowZero, bool &firstColZero)
     {
         int     m = matrix.size(), n = matrix[0].size(), i, j;
+        firstRowZero = firstColZero = false;
+
+        for (i = 0; i < n; i++)
+        {
+            if (matrix[0][i] == 0)
+            {
+                firstRowZero = true;
+                break;
+            }
+        }
 
         for (i = 0; i < m; i++)
         {
-            for (j = 0; j < n; j++)
+            if (matrix[i][0] == 0)
+            {
+                firstColZero = true;
+                break;
+            }
+        }
+
+        for (i = 1; i < m; i++)
+        {
+            for (j = 1; j < n; j++)
             {
                 if (matrix[i][j] == 0)
                 {
@@ -42,25 +68,25 @@ private:
         for (i = 1; i < m; i++)
         {
             if (matrix[i][0] == 0)
-                InvalidateRow(matrix, i);
+                InvalidateRow(matrix, i, 1);
         }
 
-        for (i = 0; i < n; i++)
+        for (i = 1; i < n; i++)
         {
             if (matrix[0][i] == 0)
-                InvalidateColumn(matrix, i);
+                InvalidateColumn(matrix, i, 1);
         }        
     }
 
-    inline void InvalidateRow(vector<vector<int> > &matrix, int r)
+    inline void InvalidateRow(vector<vector<int> > &matrix, int r, int start = 0)
     {
-        for (int i = 0; i < matrix[0].size(); i++)
+        for (int i = start; i < matrix[0].size(); i++)
             matrix[r][i] = 0;
     }
 
-    inline void InvalidateColumn(vector<vector<int> > &matrix, int c)
+    inline void InvalidateColumn(vector<vector<int> > &matrix, int c, int start = 0)
     {
-        for (int i = 0; i < matrix.size(); i++)
+        for (int i = start; i < matrix.size(); i++)
             matrix[i][c] = 0;
     }
 };
