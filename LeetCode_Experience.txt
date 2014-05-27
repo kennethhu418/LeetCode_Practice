@@ -49,6 +49,10 @@ Combinations
 (1) Decrease the scale of the original problem. The sub problem is the one with a smaller scale
 (2) Transform the original data to another data. The sub problem is the one with the same scale as the original problem.
 
+8. 在进行条件判断时，不要老是试图将多个if通过&&或||合并为一行if，这样有很高的概率出错。
+   能用多层if就用多层if好么！！！
+   Simplify Path这个题目就是充分的例证，一开始写代码的时候用的就是多层if，最后合并成了一行if，出错了吧！！
+
 *****************************************************************************************************************************************
                                    Specific Problems
 *****************************************************************************************************************************************

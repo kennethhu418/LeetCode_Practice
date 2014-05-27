@@ -29,8 +29,11 @@ public:
             nextPos = getNextSlash(path, pos+1);
             singleElem = path.substr(pos+1, nextPos - pos - 1);
 
-            if (singleElem == ".." && stack.size() > 0)
-                stack.pop_back();
+            if (singleElem == "..")
+            {
+                if (stack.size() > 0)
+                    stack.pop_back();
+            }
             else if (singleElem.size() > 0 && singleElem != ".")
                 stack.push_back(singleElem);
 
@@ -38,10 +41,15 @@ public:
         }
 
         result = "";
-        for (int i = 0; i < stack.size(); i++)
+        if (stack.size() == 0)
+            result = "/";
+        else
         {
-            result += "/";
-            result += stack[i];
+            for (int i = 0; i < stack.size(); i++)
+            {
+                result += "/";
+                result += stack[i];
+            }
         }
 
         return result;
@@ -63,7 +71,7 @@ private:
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    string  path = "////home//////";
+    string  path = "/..";
     Solution so;
     string res = so.simplifyPath(path);
 	return 0;
