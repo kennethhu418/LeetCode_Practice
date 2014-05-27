@@ -39,10 +39,13 @@ private:
                 continue;
             }
 
-            start = mid;
+            if (target > matrix[mid][matrix[mid].size() - 1])
+                start = mid + 1;
+            else
+                return mid;
         }
 
-        assert(target >= matrix[start][0] && (start == matrix.size() - 1 || matrix[start+1][0] > target));
+        //assert(target >= matrix[start][0] && (start == matrix.size() - 1 || matrix[start+1][0] > target));
         return start;
     }
 
