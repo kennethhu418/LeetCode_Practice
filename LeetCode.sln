@@ -168,6 +168,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sort_Colors", "Sort_Colors\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Search_a_2D_Matrix", "Search_a_2D_Matrix\Search_a_2D_Matrix.vcxproj", "{0A80EEA1-2B91-4571-B54E-2111D40EAFBF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Set_Matrix_Zeroes", "Set_Matrix_Zeroes\Set_Matrix_Zeroes.vcxproj", "{9DE59D5F-26B1-46E4-B985-2A4358BF1376}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -494,6 +496,10 @@ Global
 		{0A80EEA1-2B91-4571-B54E-2111D40EAFBF}.Debug|Win32.Build.0 = Debug|Win32
 		{0A80EEA1-2B91-4571-B54E-2111D40EAFBF}.Release|Win32.ActiveCfg = Release|Win32
 		{0A80EEA1-2B91-4571-B54E-2111D40EAFBF}.Release|Win32.Build.0 = Release|Win32
+		{9DE59D5F-26B1-46E4-B985-2A4358BF1376}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9DE59D5F-26B1-46E4-B985-2A4358BF1376}.Debug|Win32.Build.0 = Debug|Win32
+		{9DE59D5F-26B1-46E4-B985-2A4358BF1376}.Release|Win32.ActiveCfg = Release|Win32
+		{9DE59D5F-26B1-46E4-B985-2A4358BF1376}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
