@@ -12,10 +12,23 @@ class Solution {
 public:
     vector<string> fullJustify(vector<string> &words, int L) {
         vector<string>  result;
-        string  curLine;
+        string  curLine = "";
         int n = words.size();
-        if (n == 0) return result;
-        if (n == 1) { result.push_back(words[0]); return result;}
+        if (n == 0)
+        {
+            for (int i = 0; i < L; i++)
+                curLine += " ";
+            result.push_back(curLine);
+            return result;
+        }
+        if (n == 1) 
+        { 
+            curLine = words[0];
+            for (int i = 0; i < L - words[0].size(); i++)
+                curLine += " ";
+            result.push_back(curLine); 
+            return result;
+        }
 
         int curStartPos = 0, curEndPos = 0;
         int curCharLen = 0, curWordNum = 0, curWordCharLen = 0;
@@ -51,15 +64,29 @@ public:
                 curEndPos++;
             }
 
-            if (curEndPos == n - 1)
-                assignLineContentLeftJustified(curLine, words, curStartPos, curEndPos);
+            if (curEndPos >= n - 1)
+            {
+                assignLineContentLeftJustified(curLine, words, curStartPos, curStartPos + curWordNum - 1);
+                spaceNum = L - curWordCharLen - (curWordNum - 1);
+                for (int i = 0; i < spaceNum; i++)
+                    curLine += " ";
+            }                
             else
             {
-                spaceNum = L - curWordCharLen;
-                avgSpaceNum = spaceNum / (curWordNum - 1);
-                residuleSpaceNum = spaceNum - avgSpaceNum*(curWordNum - 1);
-                assignLineContentEvenJustified(curLine, words, curStartPos, curEndPos, 
-                            avgSpaceNum, residuleSpaceNum);
+                if (curWordNum == 1)
+                {
+                    curLine = words[curStartPos];
+                    for (int i = 0; i < L - curWordCharLen; i++)
+                        curLine += " ";
+                }
+                else
+                {
+                    spaceNum = L - curWordCharLen;
+                    avgSpaceNum = spaceNum / (curWordNum - 1);
+                    residuleSpaceNum = spaceNum - avgSpaceNum*(curWordNum - 1);
+                    assignLineContentEvenJustified(curLine, words, curStartPos, curStartPos + curWordNum - 1,
+                        avgSpaceNum, residuleSpaceNum);
+                }                
             }
 
             result.push_back(curLine);
