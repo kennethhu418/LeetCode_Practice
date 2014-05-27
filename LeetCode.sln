@@ -170,6 +170,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Search_a_2D_Matrix", "Searc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Set_Matrix_Zeroes", "Set_Matrix_Zeroes\Set_Matrix_Zeroes.vcxproj", "{9DE59D5F-26B1-46E4-B985-2A4358BF1376}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Edit_Distance", "Edit_Distance\Edit_Distance.vcxproj", "{329204BE-A5B9-4EA7-85A9-5A990815824D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Simplify_Path", "Simplify_Path\Simplify_Path.vcxproj", "{4DBEB5EF-58C6-41F6-ABB6-6F599D957EA4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -500,6 +504,14 @@ Global
 		{9DE59D5F-26B1-46E4-B985-2A4358BF1376}.Debug|Win32.Build.0 = Debug|Win32
 		{9DE59D5F-26B1-46E4-B985-2A4358BF1376}.Release|Win32.ActiveCfg = Release|Win32
 		{9DE59D5F-26B1-46E4-B985-2A4358BF1376}.Release|Win32.Build.0 = Release|Win32
+		{329204BE-A5B9-4EA7-85A9-5A990815824D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{329204BE-A5B9-4EA7-85A9-5A990815824D}.Debug|Win32.Build.0 = Debug|Win32
+		{329204BE-A5B9-4EA7-85A9-5A990815824D}.Release|Win32.ActiveCfg = Release|Win32
+		{329204BE-A5B9-4EA7-85A9-5A990815824D}.Release|Win32.Build.0 = Release|Win32
+		{4DBEB5EF-58C6-41F6-ABB6-6F599D957EA4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4DBEB5EF-58C6-41F6-ABB6-6F599D957EA4}.Debug|Win32.Build.0 = Debug|Win32
+		{4DBEB5EF-58C6-41F6-ABB6-6F599D957EA4}.Release|Win32.ActiveCfg = Release|Win32
+		{4DBEB5EF-58C6-41F6-ABB6-6F599D957EA4}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
