@@ -23,10 +23,17 @@ public:
         for (int i = 2; i <= n; i++)
             countHolder[i] = (i - 1)*countHolder[i - 1];
 
+        if (k > n*countHolder[n])
+        {
+            delete[] countHolder;
+            delete[] isUsed;
+            return "";
+        }
+
         int curNum = 0, curIndex = 0, j, i;
         for (i = n; i >= 1; i--)
         {
-            curNum = k / countHolder[i];
+            curNum = (k - 1) / countHolder[i];
             k = k - curNum*countHolder[i];
             curNum++;
 
