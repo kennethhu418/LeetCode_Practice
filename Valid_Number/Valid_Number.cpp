@@ -2,98 +2,67 @@
 //
 
 #include "stdafx.h"
+#include <cstring>
+#include <ctype.h>
 
 class Solution {
 public:
     bool isNumber(const char *s) {
-        if (s == NULL)
+        // deal with ' ' and (+-)
+        while (*s == ' ')
+            ++s;
+        if (*s == '-' || *s == '+')
+            ++s;
+        int len = strlen(s);
+        while (s[len - 1] == ' ')
+            --len;
+        if (len <= 0)
             return false;
-
-        int start = -1, end = -1;
-        if (!getStringStartEnd(s, start, end))
-            return false;
-
-        bool hasDot = false;
-        bool hasE = false;
-
-        for (int i = start; i <= end; i++)
-        {
-            if (s[i] == ' ')
-                return false;
-
-            if (s[i] == '-')
-            {
-                if (i == end)
-                    return false;
-
-                if (!isNumber(s[i + 1]))
-                    return false;
-
-                if (i == start)
-                    continue;          
-                else if (s[i - 1] == 'e' || s[i - 1] == 'E')
-                    continue;
-                return false;
+        // look for 'e'
+        const char *ptr = strchr(s, 'e');
+        if (ptr) {
+            int len1 = ptr - s;
+            int len2 = len - len1 - 1;
+            if (*(ptr + 1) == '+' || *(ptr + 1) == '-') {
+                ++ptr;
+                --len2;
             }
-
-            if (s[i] == '.')
-            {
-                if (hasDot || hasE)
-                    return false;
-
-                if (i != end && !isNumber(s[i + 1]))
-                    return false;
-
-                if (i != start && !isNumber(s[i - 1]))
-                    return false;
-
-                hasDot = true;
-                continue;
-            }
-
-            if (s[i] == 'e' || s[i] == 'E')
-            {
-                if (i == start || i == end || hasE)
-                    return false;
-
-                hasE = true;
-                continue;
-            }
-
-            if (!isNumber(s[i]))
-                return false;
+            return (isFnum(s, len1) && isDnum(ptr + 1, len2));
         }
-
-        return true;
+        else
+            return isFnum(s, len);
     }
 
-private:
-    inline bool isNumber(char a)
-    {
-        if (a >= '0' && a <= '9')
-            return true;
-        return false;
+    bool isFnum(const char *s, int len) {
+        //		cout << "f" << s << endl << len << endl;
+        // look for '.'
+        const char *ptr = strchr(s, '.');
+        if (ptr) {
+            if (ptr - s == 0)
+                return isDnum(s + 1, len - 1);
+            if (ptr - s == len - 1)
+                return isDnum(s, len - 1);
+            else
+                return (isDnum(s, ptr - s)
+                && isDnum(ptr + 1, len - (ptr - s) - 1));
+        }
+        else
+            return isDnum(s, len);
     }
 
-    inline bool getStringStartEnd(const char* s, int &start, int &end)
-    {
-        int len = 0;
-        const char* curC = s;
-        while (*curC != '\0')
-        {
-            len++;
-            curC++;
+    bool isDnum(const char *s, int len) {
+        if (!len) return false;
+        //		cout << "d" << s << endl << len << endl;
+
+        const char *p = s;
+        for (int i = 0; i < len; ++i, ++p) {
+            if (!isdigit(*p))
+                return false;
         }
-
-        for (start = 0; start < len && s[start] == ' '; start++){}
-        if (start == len)   return false;
-
-        for (end = len - 1; end >= 0 && s[end] == ' '; end--){}
-        if (end < 0)   return false;
-
         return true;
     }
 };
+
 
 int _tmain(int argc, _TCHAR* argv[])
 {
