@@ -180,6 +180,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sqrt(x)", "Sqrt(x)\Sqrt(x).
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Text_Justification", "Text_Justification\Text_Justification.vcxproj", "{D62D2E55-3473-4DE9-B92F-68512D152039}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Plus_One", "Plus_One\Plus_One.vcxproj", "{D832ACBD-C372-4289-8726-68E0DD0CC9C1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Valid_Number", "Valid_Number\Valid_Number.vcxproj", "{5344D8A7-F554-4AA2-8525-8954698D4DE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -530,6 +534,14 @@ Global
 		{D62D2E55-3473-4DE9-B92F-68512D152039}.Debug|Win32.Build.0 = Debug|Win32
 		{D62D2E55-3473-4DE9-B92F-68512D152039}.Release|Win32.ActiveCfg = Release|Win32
 		{D62D2E55-3473-4DE9-B92F-68512D152039}.Release|Win32.Build.0 = Release|Win32
+		{D832ACBD-C372-4289-8726-68E0DD0CC9C1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D832ACBD-C372-4289-8726-68E0DD0CC9C1}.Debug|Win32.Build.0 = Debug|Win32
+		{D832ACBD-C372-4289-8726-68E0DD0CC9C1}.Release|Win32.ActiveCfg = Release|Win32
+		{D832ACBD-C372-4289-8726-68E0DD0CC9C1}.Release|Win32.Build.0 = Release|Win32
+		{5344D8A7-F554-4AA2-8525-8954698D4DE2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5344D8A7-F554-4AA2-8525-8954698D4DE2}.Debug|Win32.Build.0 = Debug|Win32
+		{5344D8A7-F554-4AA2-8525-8954698D4DE2}.Release|Win32.ActiveCfg = Release|Win32
+		{5344D8A7-F554-4AA2-8525-8954698D4DE2}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
