@@ -19,15 +19,24 @@ public:
             //top row
             for (i = 0; i < w; i++)
                 result.push_back(matrix[x][y + i]);
+
             //right col
             for (i = 1; i < h; i++)
                 result.push_back(matrix[x + i][y + w - 1]);
-            //bottom row
-            for (i = n - 2; i  >= 0; i--)
-                result.push_back(matrix[x + h - 1][y + i]);
-            //left col
-            for (i = h - 2; i > 0; i--)
-                result.push_back(matrix[x + i][y]);
+
+            if (h > 1)
+            {
+                //bottom row
+                for (i = w - 2; i >= 0; i--)
+                    result.push_back(matrix[x + h - 1][y + i]);
+            }
+
+            if (w > 1)
+            {
+                //left col
+                for (i = h - 2; i > 0; i--)
+                    result.push_back(matrix[x + i][y]);
+            }
 
             x++;    y++;    w -= 2; h -= 2;
         }
@@ -50,4 +59,3 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	return 0;
 }
-
