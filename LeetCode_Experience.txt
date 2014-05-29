@@ -53,6 +53,21 @@ Combinations
    能用多层if就用多层if好么！！！
    Simplify Path这个题目就是充分的例证，一开始写代码的时候用的就是多层if，最后合并成了一行if，出错了吧！！
 
+ 9. 对于char* 表示的字符串s，千万不要忘记用*s来获取字符的值，而不是s ！！！！！！！！！！！
+
+ 10. 当用sort函数对vector等容器排序时，在compare函数中请一定要用<或>号，不要用<=或>=号。否则会造成panic
+        例如 merge interval中，compare函数如果写成
+        static bool compare(const Interval& v1, const Interval& v2)
+        {
+            return v1.start <= v2.start;
+        }
+        那么程序在v1.start = v2.start时就会panic。如果写成如下形式就不会
+        static bool compare(const Interval& v1, const Interval& v2)
+        {
+            return v1.start < v2.start;
+        }
+
+
 *****************************************************************************************************************************************
                                    Specific Problems
 *****************************************************************************************************************************************
