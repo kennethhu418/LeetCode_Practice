@@ -212,6 +212,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Spiral_Matrix", "Spiral_Mat
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Maximum_Subarray", "Maximum_Subarray\Maximum_Subarray.vcxproj", "{91A91737-FE53-4381-9FF2-ECBE9B632569}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Wildcard_Matching", "Wildcard_Matching\Wildcard_Matching.vcxproj", "{1F11CEE3-F2F7-45E1-A014-4931A2699F05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -626,6 +628,10 @@ Global
 		{91A91737-FE53-4381-9FF2-ECBE9B632569}.Debug|Win32.Build.0 = Debug|Win32
 		{91A91737-FE53-4381-9FF2-ECBE9B632569}.Release|Win32.ActiveCfg = Release|Win32
 		{91A91737-FE53-4381-9FF2-ECBE9B632569}.Release|Win32.Build.0 = Release|Win32
+		{1F11CEE3-F2F7-45E1-A014-4931A2699F05}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1F11CEE3-F2F7-45E1-A014-4931A2699F05}.Debug|Win32.Build.0 = Debug|Win32
+		{1F11CEE3-F2F7-45E1-A014-4931A2699F05}.Release|Win32.ActiveCfg = Release|Win32
+		{1F11CEE3-F2F7-45E1-A014-4931A2699F05}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
