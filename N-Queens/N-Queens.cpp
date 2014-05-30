@@ -17,12 +17,12 @@ public:
         vector<string>  singleResult;
         InitializeSingleResult(singleResult, n);
 
-        bool* rowAcc = new bool[2*n];
-        bool* colAcc = rowAcc + n;
-        memset(rowAcc, 0, sizeof(bool)*2*n);
+        bool* colAcc = new bool[n];
+        int*  colInEachRow = new int[n];
+        memset(colAcc, 0, sizeof(bool)*n);
 
-        solveNQueens(resultA, singleResult, n, n, rowAcc, colAcc);
-        delete[] rowAcc;
+        solveNQueens(resultA, singleResult, n, n, colAcc, colInEachRow);
+        delete[] colAcc;    delete[] colInEachRow;
         return resultA;
     }
 
@@ -35,8 +35,9 @@ private:
         for (int i = 0; i < n; i++)
             singleResult.push_back(s);
     }
+
     void solveNQueens(vector<vector<string>> &result, vector<string> &singleResult, 
-        int leftQ, int n, bool* rowAcc, bool* colAcc)
+        int leftQ, int n, bool* colAcc, int* colInEachRow)
     {
         if (leftQ == 0)
         {
@@ -44,21 +45,33 @@ private:
             return;
         }
 
-        for (int i = 0; i < n; i++)
+        bool fit = false;
+
+        for (int j = 0; j < n; j++)
         {
-            if (rowAcc[i])  continue;
-            rowAcc[i] = true;
-            for (int j = 0; j < n; j++)
+            if (colAcc[j])  continue;
+
+            fit = true;
+            for (int i = 0; i < n - leftQ; i++)
             {
-                if (colAcc[j])  continue;
-                colAcc[j] = true;
-                singleResult[i][j] = 'Q';
-                solveNQueens(result, singleResult, leftQ - 1, n, rowAcc, colAcc);
-                singleResult[i][j] = '.';
-                colAcc[j] = false;
+                if (abs(n - leftQ - i) == abs(j - colInEachRow[i]))
+                {
+                    fit = false;
+                    break;
+                }
             }
-            rowAcc[i] = false;
+
+            if (!fit)
+                continue;
+
+            colAcc[j] = true;
+            colInEachRow[n - leftQ] = j;
+            singleResult[n - leftQ][j] = 'Q';
+            solveNQueens(result, singleResult, leftQ - 1, n, colAcc, colInEachRow);
+            singleResult[n - leftQ][j] = '.';
+            colAcc[j] = false;
         }
+
     }
 };
 
@@ -66,7 +79,7 @@ private:
 int _tmain(int argc, _TCHAR* argv[])
 {
     Solution s;
-    s.solveNQueens(2);
+    s.solveNQueens(1);
 	return 0;
 }
 
