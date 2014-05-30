@@ -2,6 +2,8 @@
 //
 
 #include "stdafx.h"
+#include <string>
+using namespace std;
 
 class Solution {
 public:
@@ -12,24 +14,35 @@ public:
         if (s == NULL || p == NULL)
             return false;
 
-        while (*s != '\0' && *p != '\0')
+        if (*p == '\0')
         {
-            if (!foundMatch(s, p))
+            if (*s == '\0') return true;
+            else return false;
+        }
+        else if (*s == '\0')
+        {
+            if (allStars(p)) return true;
+            return false;
+        }
+
+        bool    prevPisStar = false;
+        while (true)
+        {
+            if (!foundMatch(s, p, prevPisStar))
                 return false;
+
+            if (*p == '*')
+            {
+                p++;
+                prevPisStar = true;
+                continue;
+            }
 
             if (*s == '\0' || *p == '\0')
                 break;
-
-            p++;
         }
 
-        if (*s == '\0' && *p == '\0')
-            return true;
-
-        if (*s == '\0' && allStars(p))
-            return true;
-
-        return false;
+        return true;
     }
     
 private:
@@ -46,42 +59,120 @@ private:
         return true;
     }
 
-    inline bool foundMatch(const char* &s, const char* &p)
+    //param prevPisStar: whether *(p-1) == '*'
+    inline bool foundMatch(const char* &s, const char* &p, bool prevPisStar)
     {
         const char* curP = p; const char* curS = s; const char* curSStart = s;
-        while (*curP != '\0' && *curS != '\0')
-        {
-            if (*curP == '*')
-                break;
 
-            if (*curP == '?' || *curS == *curP)
+        if (*s == '\0')
+        {
+            if (allStars(p))
+                return true;
+            return false;
+        }
+
+        while (*curSStart != '\0')
+        {
+            while (*curP != '\0' && *curS != '\0')
             {
-                curS++; curP++; continue;
+                if (*curP == '*')
+                    break;
+
+                if (*curP == '?' || *curS == *curP)
+                {
+                    curS++; curP++; continue;
+                }
+
+                if (!prevPisStar)
+                    return false;
+
+                curS = ++curSStart;
+                curP = p;
+            }
+            
+            if (*curP == '*')   //if p is star, it means the chars before this star in the two strings are the same. We can start a new round of check now
+            {
+                s = curS; p = curP;
+                return true;
+            }
+
+            if (*curS == '\0')
+            {
+                if (allStars(curP))
+                {
+                    s = curS; p = curP;
+                    return true;
+                }
+                return false;
+            }
+
+            if (*curP == '\0')
+            {
+                if (!prevPisStar)
+                    return false;
+
+                //the last char of p string is *, and we reach the end. In this case, if 
+                //there is still remaining characters of s string, return true
+                if (*(curP - 1) == '*')
+                {
+                    s = curS; p = curP;
+                    return true;
+                }
             }
 
             curS = ++curSStart;
-            curP = p;                
+            curP = p;            
         }
 
-        s = curS; p = curP;
+        return false;
+    }
+};
 
-        if (*curP == '*')
-             return true;
+class Solution2 {
+public:
+    bool isMatch(const char *s, const char *p) {
+        const char* star = NULL;
+        const char* rs = NULL;
 
-        //here *curS == '\0' || *curP == '\0', which does not certainly mean that
-        //the two strings are matched. But we still return true for the caller to
-        //process *curS == '\0' || *curP == '\0' case.
-        return true;
+        while (*s) {
+            if (*s == *p || *p == '?') { //match
+                s++; p++;
+                continue;
+            }
+            if (*p == '*') {
+                star = p; // record star
+                p++; //match from next p
+                rs = s; // record the position of s , star match 0
+                continue;
+            }
+            if (star != NULL) { //if have star in front then backtrace
+                p = star + 1; //reset the position of p 
+                s = rs + 1;
+                rs++; //star match 1,2,3,4,5....
+                continue;
+            }
+            return false; //if not match return false
+        }
+        while (*p == '*') p++; //skip continue star
+        return *p == '\0'; // successful match
     }
 };
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    const char* s = "abcdeabckmabc";
-    const char* p = "a*km**??ec**";
+    //string s = "";
+    //for (int i = 0; i < 32316; i++)
+    //    s += "a";
+    //string p = "";
+    //p += "*";
+    //for (int i = 0; i < 32317; i++)
+    //    p += "a";
+    //p += "*";
+    string s = "b";
+    string p = "?*?";
 
     Solution so;
-    printf("%d\n\n", so.isMatch(s, p));
+    printf("%d\n\n", so.isMatch(s.c_str(), p.c_str()));
 
 
 	return 0;

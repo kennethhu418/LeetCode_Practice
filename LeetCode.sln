@@ -214,6 +214,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Maximum_Subarray", "Maximum
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Wildcard_Matching", "Wildcard_Matching\Wildcard_Matching.vcxproj", "{1F11CEE3-F2F7-45E1-A014-4931A2699F05}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "N-Queens", "N-Queens\N-Queens.vcxproj", "{5B7FA738-0C7A-4B4E-87FF-20F433D0767B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -632,6 +634,10 @@ Global
 		{1F11CEE3-F2F7-45E1-A014-4931A2699F05}.Debug|Win32.Build.0 = Debug|Win32
 		{1F11CEE3-F2F7-45E1-A014-4931A2699F05}.Release|Win32.ActiveCfg = Release|Win32
 		{1F11CEE3-F2F7-45E1-A014-4931A2699F05}.Release|Win32.Build.0 = Release|Win32
+		{5B7FA738-0C7A-4B4E-87FF-20F433D0767B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5B7FA738-0C7A-4B4E-87FF-20F433D0767B}.Debug|Win32.Build.0 = Debug|Win32
+		{5B7FA738-0C7A-4B4E-87FF-20F433D0767B}.Release|Win32.ActiveCfg = Release|Win32
+		{5B7FA738-0C7A-4B4E-87FF-20F433D0767B}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
