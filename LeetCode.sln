@@ -33,6 +33,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Copy_List_with_Random_Point
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5FC4DFB9-66FD-4095-A39A-7C0A712A7B8A}"
 	ProjectSection(SolutionItems) = preProject
+		C++ Primer Notes.docx = C++ Primer Notes.docx
 		LeetCode_Experience.txt = LeetCode_Experience.txt
 	EndProjectSection
 EndProject
