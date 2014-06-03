@@ -227,6 +227,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rotate_Image", "Rotate_Imag
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Permutations", "Permutations\Permutations.vcxproj", "{9FBB2D43-77E0-404B-8FA5-86A1227CFD87}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Jump_Game_II", "Jump_Game_II\Jump_Game_II.vcxproj", "{A870EF8E-92F9-4122-97C2-8C508DA1ECEF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Multiply_Strings", "Multiply_Strings\Multiply_Strings.vcxproj", "{D9FE73C5-C539-4A24-B0EF-BD2CA37198B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -669,6 +673,14 @@ Global
 		{9FBB2D43-77E0-404B-8FA5-86A1227CFD87}.Debug|Win32.Build.0 = Debug|Win32
 		{9FBB2D43-77E0-404B-8FA5-86A1227CFD87}.Release|Win32.ActiveCfg = Release|Win32
 		{9FBB2D43-77E0-404B-8FA5-86A1227CFD87}.Release|Win32.Build.0 = Release|Win32
+		{A870EF8E-92F9-4122-97C2-8C508DA1ECEF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A870EF8E-92F9-4122-97C2-8C508DA1ECEF}.Debug|Win32.Build.0 = Debug|Win32
+		{A870EF8E-92F9-4122-97C2-8C508DA1ECEF}.Release|Win32.ActiveCfg = Release|Win32
+		{A870EF8E-92F9-4122-97C2-8C508DA1ECEF}.Release|Win32.Build.0 = Release|Win32
+		{D9FE73C5-C539-4A24-B0EF-BD2CA37198B5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D9FE73C5-C539-4A24-B0EF-BD2CA37198B5}.Debug|Win32.Build.0 = Debug|Win32
+		{D9FE73C5-C539-4A24-B0EF-BD2CA37198B5}.Release|Win32.ActiveCfg = Release|Win32
+		{D9FE73C5-C539-4A24-B0EF-BD2CA37198B5}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

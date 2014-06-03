@@ -45,6 +45,9 @@ Combinations
 比如Restore IP Addreses. 用递归解法的代码量远比DP解法的代码量小得多.
 再比如Unique Binary Search Trees中，用非递归的DP解法会造成大量的树的拷贝，而用递归解法就不用大量拷贝。
 
+另外，求最优解问题时，用动态规划算法的时间复杂度一般都至少为O(n^2)，如果题目要求必须在O(n)内，则可以考虑贪心法。
+例如 JumpGames这道题
+
 7. The two directions to split a problem to sub problems:
 (1) Decrease the scale of the original problem. The sub problem is the one with a smaller scale
 (2) Transform the original data to another data. The sub problem is the one with the same scale as the original problem.
