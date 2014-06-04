@@ -1,10 +1,11 @@
-#ifndef _WINNER_TREE_INNER_
-#define _WINNER_TREE_INNER_
+// Merge_k_Sorted_Lists.cpp : 定义控制台应用程序的入口点。
+//
 
+#include "stdafx.h"
 #include <assert.h>
 #include <vector>
 
-using std::vector;
+using namespace std;
 
 template <class T> //T is the values' type stored in this stream
 class Stream
@@ -40,7 +41,7 @@ public:
         unsigned int curMask = 0x80000000;
         while ((curMask & K) == 0)
         {
-            curMask = curMask>>1;
+            curMask = curMask >> 1;
         }
 
         assert(curMask);
@@ -77,7 +78,7 @@ public:
                     array[p] = leftIndex;
                 else
                     array[p] = rightIndex;
-            }            
+            }
         }
 
         return true;
@@ -147,4 +148,96 @@ private:
     int                 leaf_start;
 };
 
-#endif
+
+
+typedef struct __ListNode {
+    int val;
+    __ListNode *next;
+    __ListNode(int x) : val(x), next(NULL) {}
+}ListNode;
+
+class ListStream : public Stream<ListNode*>
+{
+public:
+    ListStream(ListNode* list = NULL)
+    {
+        this->head = list;
+    }
+
+    bool empty() const
+    {
+        return head == NULL;
+    }
+
+    ListNode*& getFirstElem()
+    {
+        return head;
+    }
+
+    void removeFirstElem()
+    {
+        if (head != NULL)
+            head = head->next;
+    }
+
+    int compare(ListNode* &t1, ListNode* &t2)
+    {
+        return t1->val - t2->val;
+    }
+
+    void setList(ListNode* list)
+    {
+        head = list;
+    }
+
+private:
+    ListNode* head;
+};
+
+class Solution {
+public:
+    ListNode *mergeKLists(vector<ListNode *> &lists) {
+        int n = lists.size();
+        if (n == 0) return NULL;
+        if (n == 1) return lists[0];
+
+        vector<Stream<ListNode*>*>  liststreamArray;
+        ListStream* liststreamBuffer = new ListStream[n];
+        for (int i = 0; i < n; i++)
+        {
+            liststreamBuffer[i].setList(lists[i]);
+            liststreamArray.push_back(&liststreamBuffer[i]);
+        }
+
+        WinnerTree<ListNode*>   tree;
+        tree.Initialize(liststreamArray);
+
+        ListNode* head = tree.peekWinner(), *tail = head, *curNode = NULL;
+        if (head == NULL)
+        {
+            tree.FreeTree();
+            delete[] liststreamBuffer;
+            return NULL;
+        }
+
+        tree.takeWinner();
+        while (!tree.empty())
+        {
+            curNode = tree.takeWinner();
+            tail->next = curNode;
+            tail = curNode;
+        }
+
+        tree.FreeTree();
+        delete[] liststreamBuffer;
+        tail->next = NULL;
+        return head;
+    }
+};
+
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	return 0;
+}
+
