@@ -35,6 +35,9 @@
     <ClInclude Include="FullQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="WinnerTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
