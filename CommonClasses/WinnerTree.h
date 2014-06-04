@@ -2,6 +2,9 @@
 #define _WINNER_TREE_INNER_
 
 #include <assert.h>
+#include <vector>
+
+using std::vector;
 
 template <class T> //T is the values' type stored in this stream
 class Stream
@@ -10,18 +13,20 @@ public:
     virtual bool empty() const = 0;
     virtual T& getFirstElem() = 0;
     virtual void removeFirstElem() = 0;
-    virtual int compare(const T& t1, const T& t2) = 0;
+    virtual int compare(T& t1, T& t2) = 0;
 };
 
 template <class T>  //T is the value that will be compared
 class WinnerTree
 {
 public:
-    bool    Initialize(Stream<T>* streams, int n)
+    bool    Initialize(vector<Stream<T>*> &streams)
     {
+        int n = streams.size();
         if (n < 1)
             return false;
         this->K = n;
+        this->streams = streams;
 
         if (K == 1)
         {
@@ -32,13 +37,18 @@ public:
         }
 
         //get the size of the array for the winner tree
-        int curMask = 0x80000000;
-        while (curMask & K == 0)
-            curMask = curMask >> 1;
+        unsigned int curMask = 0x80000000;
+        while ((curMask & K) == 0)
+        {
+            curMask = curMask>>1;
+        }
+
+        if (K != curMask)
+            curMask << 1;
+            
         assert(curMask);
 
-        if (curMask != K)
-            curMask << 1;        
+
         n = curMask;
 
         array_size = 2 * n - 1;   //full perfect binary tree's size
@@ -59,13 +69,13 @@ public:
             leftIndex = array[i - 1];
             rightIndex = array[i];
 
-            if (streams[rightIndex].empty())
+            if (streams[rightIndex]->empty())
                 array[p] = leftIndex;
-            else if (streams[leftIndex].empty())
+            else if (streams[leftIndex]->empty())
                 array[p] = rightIndex;
             else
             {
-                if (streams[leftIndex].compare(streams[leftIndex].getFirstElem(), streams[rightIndex].getFirstElem()) < 0)
+                if (streams[leftIndex]->compare(streams[leftIndex]->getFirstElem(), streams[rightIndex]->getFirstElem()) < 0)
                     array[p] = leftIndex;
                 else
                     array[p] = rightIndex;
@@ -82,19 +92,20 @@ public:
         array = NULL;
         array_size = 0;
         leaf_start = 0;
+        streams.clear();
     }
 
     T&       peekWinner()
     {
-        return streams[array[0]].getFirstElem();
+        return streams[array[0]]->getFirstElem();
     }
 
-    T           takeWinner()
+    T        takeWinner()
     {
-        T   retVal = streams[array[0]].getFirstElem();
+        T   retVal = streams[array[0]]->getFirstElem();
 
         int changedNode = leaf_start + array[0];
-        streams[array[0]].removeFirstElem();
+        streams[array[0]]->removeFirstElem();
 
         int p, slibling, index1, index2;
         while (changedNode > 0)
@@ -105,13 +116,13 @@ public:
             index1 = array[changedNode];
             index2 = array[slibling];
 
-            if (streams[index1].empty())
+            if (streams[index1]->empty())
                 array[p] = index2;
-            else if (streams[index2].empty())
+            else if (streams[index2]->empty())
                 array[p] = index1;
             else
             {
-                if (streams[index1].compare(streams[index1].getFirstElem(), streams[index2].getFirstElem()) < 0)
+                if (streams[index1]->compare(streams[index1]->getFirstElem(), streams[index2]->getFirstElem()) < 0)
                     array[p] = index1;
                 else
                     array[p] = index2;
@@ -125,15 +136,15 @@ public:
 
     bool    empty()
     {
-        if (streams[array[0]].empty())
+        if (streams[array[0]]->empty())
             return true;
         return false;
     }
 
 private:
-    Stream<T>*     streams;
-    int                 K;
-    int*              array;
+    vector<Stream<T>*>  streams;
+    unsigned int        K;
+    int*                array;
     int                 array_size;
     int                 leaf_start;
 };
