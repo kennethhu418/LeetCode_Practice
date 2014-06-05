@@ -239,6 +239,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "First_Missing_Positive", "F
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Combination_Sum", "Combination_Sum\Combination_Sum.vcxproj", "{5C698B62-B18E-45AB-A116-B434147C9EEA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Combination_Sum_II", "Combination_Sum_II\Combination_Sum_II.vcxproj", "{D8B4357B-9BDF-494D-AD25-F6C97BF8AFBC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Count_and_Say", "Count_and_Say\Count_and_Say.vcxproj", "{08F4F200-3826-4FA7-86D4-97B07427D334}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -705,6 +709,14 @@ Global
 		{5C698B62-B18E-45AB-A116-B434147C9EEA}.Debug|Win32.Build.0 = Debug|Win32
 		{5C698B62-B18E-45AB-A116-B434147C9EEA}.Release|Win32.ActiveCfg = Release|Win32
 		{5C698B62-B18E-45AB-A116-B434147C9EEA}.Release|Win32.Build.0 = Release|Win32
+		{D8B4357B-9BDF-494D-AD25-F6C97BF8AFBC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D8B4357B-9BDF-494D-AD25-F6C97BF8AFBC}.Debug|Win32.Build.0 = Debug|Win32
+		{D8B4357B-9BDF-494D-AD25-F6C97BF8AFBC}.Release|Win32.ActiveCfg = Release|Win32
+		{D8B4357B-9BDF-494D-AD25-F6C97BF8AFBC}.Release|Win32.Build.0 = Release|Win32
+		{08F4F200-3826-4FA7-86D4-97B07427D334}.Debug|Win32.ActiveCfg = Debug|Win32
+		{08F4F200-3826-4FA7-86D4-97B07427D334}.Debug|Win32.Build.0 = Debug|Win32
+		{08F4F200-3826-4FA7-86D4-97B07427D334}.Release|Win32.ActiveCfg = Release|Win32
+		{08F4F200-3826-4FA7-86D4-97B07427D334}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,4 @@
-// Combination_Sum.cpp : 定义控制台应用程序的入口点。
+// Combination_Sum_II.cpp : 定义控制台应用程序的入口点。
 //
 
 #include "stdafx.h"
@@ -9,7 +9,7 @@ using std::vector;
 
 class Solution {
 public:
-    vector<vector<int> > combinationSum(vector<int> &candidates, int target) {
+    vector<vector<int> > combinationSum2(vector<int> &candidates, int target) {
         int n = candidates.size();
         vector<vector<int> > result;
         if (n == 0 || target <= 0)
@@ -36,8 +36,9 @@ private:
             return false;
 
         int nextStart = getNextDifferentNum(candidates, start);
+        int dupCount = nextStart - start;
         vector<vector<int> > subResult;
-        for (int i = 0;; i++)
+        for (int i = 0; i <= dupCount; i++)
         {
             if (i*candidates[start] > target)
                 break;
@@ -72,7 +73,7 @@ private:
             for (int j = 0; j < repCount; j++)
                 singleComb.push_back(preNum);
 
-            result.push_back(singleComb);        
+            result.push_back(singleComb);
         }
 
         for (int i = 0; i < n; i++)
@@ -90,13 +91,11 @@ private:
     }
 };
 
-
 int _tmain(int argc, _TCHAR* argv[])
 {
     vector<int> candidates;
     candidates.push_back(2);
     candidates.push_back(7);
-    candidates.push_back(2);
     candidates.push_back(6);
     candidates.push_back(3);
 
