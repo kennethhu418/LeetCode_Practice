@@ -233,6 +233,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Multiply_Strings", "Multipl
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Merge_k_Sorted_Lists", "Merge_k_Sorted_Lists\Merge_k_Sorted_Lists.vcxproj", "{CC201AFE-CE5E-4D06-9715-B2AE5E0BED78}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Trapping_Rain_Water", "Trapping_Rain_Water\Trapping_Rain_Water.vcxproj", "{671E189D-221A-4B91-B034-E5E536B6EB73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -687,6 +689,10 @@ Global
 		{CC201AFE-CE5E-4D06-9715-B2AE5E0BED78}.Debug|Win32.Build.0 = Debug|Win32
 		{CC201AFE-CE5E-4D06-9715-B2AE5E0BED78}.Release|Win32.ActiveCfg = Release|Win32
 		{CC201AFE-CE5E-4D06-9715-B2AE5E0BED78}.Release|Win32.Build.0 = Release|Win32
+		{671E189D-221A-4B91-B034-E5E536B6EB73}.Debug|Win32.ActiveCfg = Debug|Win32
+		{671E189D-221A-4B91-B034-E5E536B6EB73}.Debug|Win32.Build.0 = Debug|Win32
+		{671E189D-221A-4B91-B034-E5E536B6EB73}.Release|Win32.ActiveCfg = Release|Win32
+		{671E189D-221A-4B91-B034-E5E536B6EB73}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
