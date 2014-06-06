@@ -3,13 +3,10 @@
 
 #include "stdafx.h"
 #include <assert.h>
-#include <algorithm>
-
-using namespace std;
 
 #define SIGN_MASK 0x80000000
-
-//the first version did not consider that dividend or divisor may be 0xFFFFFFFF, in this case, there is no valid value of 0 - 0xFFFFFFFF, resulting in bad result.
+//The previous two versions have time complexity of O(log(dividend)), which is already acceptable. But it uses recursive function, it means consuming a lot of memory.
+//So here we use another algorithm, which is described in "Algorithm.jpg" and whose complexity is O(log(result)) = O(log(dividend/divisor)) = O(log(dividend) - log(divisor))
 class Solution {
 public:
     int divide(int dividend, int divisor) {
@@ -21,50 +18,39 @@ public:
 
         long long dividendT = dividend;
         long long divisorT = divisor;
-
         bool needChangeSign = (SIGN_MASK&dividend) ^ (SIGN_MASK&divisor);
         if (dividendT < 0)
             dividendT = 0 - dividendT;
         if (divisorT < 0)
             divisorT = 0 - divisorT;
 
-        long long residule = 0;
-        long long result = divide(dividendT, divisorT, residule);
+        int shiftCount = 0;
+        long long shiftedRes = divisorT;
+        while (shiftedRes <= dividendT)
+        {
+            shiftCount++;
+            shiftedRes = shiftedRes << 1;
+        }
+        shiftCount--;
+        shiftedRes = shiftedRes >> 1;
+
+        long long result = 0;
+        while (shiftCount >= 0)
+        {
+            if (shiftedRes <= dividendT)
+            {
+                result += (1 << shiftCount);
+                dividendT -= shiftedRes;
+            }                
+          
+            shiftCount--;
+            shiftedRes = shiftedRes >> 1;
+        }
 
         if (needChangeSign)
             result = 0 - result;
+
         return (int)result;
-    }
-
-private:
-    long long divide(long long dividend, long long divisor, long long & r)
-    {
-        if (dividend == divisor)
-        {
-            r = 0;
-            return 1;
-        }
-
-        if (dividend < divisor)
-        {
-            r = dividend;
-            return 0;
-        }
-
-        long long result = divide(dividend >> 1, divisor, r);
-
-        result += result;
-        r += r;
-        if (0x1 & dividend)
-            r++;
-
-        if (r >= divisor)
-        {
-            result++;
-            r -= divisor;
-        }
-
-        return result;
     }
 };
 
@@ -72,7 +58,7 @@ private:
 int _tmain(int argc, _TCHAR* argv[])
 {
     int dividend = 101 ;
-    int divisor = -3;
+    int divisor = 3;
 
     Solution so;
     int res = so.divide(dividend ,divisor);
