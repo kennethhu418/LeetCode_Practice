@@ -5,8 +5,8 @@
 #include <assert.h>
 
 #define SIGN_MASK 0x80000000
-//The previous two versions have time complexity of O(log(dividend)), which is already acceptable. But it uses recursive function, it means consuming a lot of memory.
-//So here we use another algorithm, which is described in "Algorithm.jpg" and whose complexity is O(log(result)) = O(log(dividend/divisor)) = O(log(dividend) - log(divisor))
+#define MIN_INTEGER 0x80000000
+//Here we made a little modification to the latest version, where we will not use "long long" but still stick to the "int" type
 class Solution {
 public:
     int divide(int dividend, int divisor) {
@@ -15,17 +15,33 @@ public:
         if (dividend == divisor) return 1;
         if (divisor == 1) return dividend;
         if (divisor == -1) return 0 - dividend;
+        if (divisor == MIN_INTEGER) return 0;
 
-        long long dividendT = dividend;
-        long long divisorT = divisor;
+        unsigned int result = 0;
         bool needChangeSign = (SIGN_MASK&dividend) ^ (SIGN_MASK&divisor);
-        if (dividendT < 0)
-            dividendT = 0 - dividendT;
-        if (divisorT < 0)
-            divisorT = 0 - divisorT;
+
+        if (divisor < 0)
+            divisor = 0 - divisor;
+
+        if (dividend < 0)
+        {
+            if (dividend == MIN_INTEGER)
+            {
+                dividend += divisor;
+                result = 1;
+            }
+
+            dividend = 0 - dividend;
+        }
+
+        if (dividend < divisor)
+            return result;
+
+        unsigned int dividendT = dividend;
+        unsigned int divisorT = divisor;
 
         int shiftCount = 0;
-        long long shiftedRes = divisorT;
+        unsigned int shiftedRes = divisorT;
         while (shiftedRes <= dividendT)
         {
             shiftCount++;
@@ -34,7 +50,6 @@ public:
         shiftCount--;
         shiftedRes = shiftedRes >> 1;
 
-        long long result = 0;
         while (shiftCount >= 0)
         {
             if (shiftedRes <= dividendT)
@@ -48,8 +63,7 @@ public:
         }
 
         if (needChangeSign)
-            result = 0 - result;
-
+            return 0 - (int)result;
         return (int)result;
     }
 };
@@ -57,7 +71,7 @@ public:
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    int dividend = 101 ;
+    int dividend = -101;
     int divisor = 3;
 
     Solution so;
