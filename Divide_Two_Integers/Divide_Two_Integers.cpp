@@ -9,6 +9,7 @@ using namespace std;
 
 #define SIGN_MASK 0x80000000
 
+//the first version did not consider that dividend or divisor may be 0xFFFFFFFF, in this case, there is no valid value of 0 - 0xFFFFFFFF, resulting in bad result.
 class Solution {
 public:
     int divide(int dividend, int divisor) {
@@ -18,17 +19,17 @@ public:
         if (divisor == 1) return dividend;
         if (divisor == -1) return 0 - dividend;
 
-        int dividendT = dividend;
-        int divisorT = divisor;
+        long long dividendT = dividend;
+        long long divisorT = divisor;
 
         bool needChangeSign = (SIGN_MASK&dividend) ^ (SIGN_MASK&divisor);
         if (dividendT < 0)
             dividendT = 0 - dividendT;
         if (divisorT < 0)
-            divisorT = 0 - divisorT;            
+            divisorT = 0 - divisorT;
 
-        int residule = 0;
-        int result = divide(dividendT, divisorT, residule);
+        long long residule = 0;
+        long long result = divide(dividendT, divisorT, residule);
 
         if (needChangeSign)
             result = 0 - result;
@@ -36,7 +37,7 @@ public:
     }
 
 private:
-    int divide(int dividend, int divisor, int & r)
+    long long divide(long long dividend, long long divisor, long long & r)
     {
         if (dividend == divisor)
         {
@@ -50,7 +51,7 @@ private:
             return 0;
         }
 
-        int result = divide(dividend >> 1, divisor, r);
+        long long result = divide(dividend >> 1, divisor, r);
 
         result += result;
         r += r;
