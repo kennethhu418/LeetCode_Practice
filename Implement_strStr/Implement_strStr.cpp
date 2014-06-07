@@ -8,6 +8,13 @@ public:
     char *strStr(char *haystack, char *needle) {
         if (haystack == NULL || needle == NULL) return NULL;
 
+        //first version did not consider corner cases:
+        //what if haystack or needle is empty string.
+        if (*needle == '\0')
+        {
+            return haystack;
+        }
+
         char* curStart = haystack, *curPos = NULL, *curNeedle = needle, *nextStart = NULL;
         while (*curStart != '\0')
         {
