@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <vector>
 
-#define MAX_UNSIGNED_INT  0x7FFFFFFF
+#define MAX_UNSIGNED_INT  0x6FFFFFFF
 
 using std::vector;
 
