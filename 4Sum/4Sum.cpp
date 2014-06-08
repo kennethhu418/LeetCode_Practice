@@ -11,54 +11,76 @@ using std::vector;
 class Solution {
 public:
     vector<vector<int> > fourSum(vector<int> &nums, int target) {
-        resultArray.clear();
-        
         int n = nums.size();
-        if (n == 0) return resultArray;
+        resultArray.clear();
+
+        if (n < 4)  return resultArray;
 
         std::sort(nums.begin(), nums.end());
-        takeSum(nums, 0, target, 4);
+        
+        int curT;
+        for (int outterStart = 0; outterStart <= n - 4; )
+        {
+            for (int outterEnd = outterStart + 3; outterEnd < n;)
+            {
+                curT = target - nums[outterStart] - nums[outterEnd];
+                curOutterStartVal = nums[outterStart];
+                curOutterEndVal = nums[outterEnd];
+                TwoSumInner(nums, outterStart + 1, outterEnd - 1, curT);
+                outterEnd = getNext(nums, outterEnd);
+            }
+            outterStart = getNext(nums, outterStart);
+        }
+
         return resultArray;
     }
 
 private:
     vector<vector<int>> resultArray;
-    vector<int> curResult;
+    vector<int> singleComb;
+    int     curOutterStartVal;
+    int     curOutterEndVal;
 
-    void takeSum(const vector<int>& nums, int curStart, int target, int numCount)
+    inline void TwoSumInner(const vector<int> &nums, int start, int end, int target)
     {
-        if (numCount == 0)
+        int totalSum = 0;
+
+        while (start < end)
         {
-            if (target == 0)
-                resultArray.push_back(curResult);
-            return;
+            totalSum = nums[start] + nums[end];
+            if (totalSum == target)
+            {
+                singleComb.push_back(curOutterStartVal);
+                singleComb.push_back(nums[start]);
+                singleComb.push_back(nums[end]);
+                singleComb.push_back(curOutterEndVal);
+                resultArray.push_back(singleComb);
+                singleComb.clear();
+                start = getNext(nums, start);
+                end = getNextReverse(nums, end);
+            }
+            else if (totalSum > target)
+                end = getNextReverse(nums, end);
+            else
+                start = getNext(nums, start);
         }
-
-        if (curStart == nums.size())
-            return;
-
-        int nextStart = getNextStart(nums, curStart);
-        int cnt = std::min(nextStart - curStart, numCount);
-
-        //not include current number
-        takeSum(nums, nextStart, target, numCount);
-
-        //include 1 to cnt number of current number
-        for (int curCnt = 1; curCnt <= cnt; curCnt++)
-        {
-            curResult.push_back(nums[curStart]);
-            takeSum(nums, nextStart, target - curCnt*nums[curStart], numCount - curCnt);
-        }
-
-        for (int curCnt = 1; curCnt <= cnt; curCnt++)
-            curResult.pop_back();
     }
 
-    inline int getNextStart(const vector<int>& nums, int curStart)
+    inline int getNext(const vector<int> &nums, int curPos)
     {
-        int curPos = curStart + 1;
-        while (curPos < nums.size() && nums[curPos] == nums[curStart])
+        int n = nums.size();
+        curPos++;
+        while (curPos < n && nums[curPos] == nums[curPos - 1])
             curPos++;
+        return curPos;
+    }
+
+    inline int getNextReverse(const vector<int> &nums, int curPos)
+    {
+        int n = nums.size();
+        curPos--;
+        while (curPos >= 0 && nums[curPos] == nums[curPos + 1])
+            curPos--;
         return curPos;
     }
 };
@@ -66,8 +88,8 @@ private:
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    int S[] = { -497, -494, -484, -477, -453, -453, -444, -442, -428, -420, -401, -393, -392, -381, -357, -357, -327, -323, -306, -285, -284, -263, -262, -254, -243, -234, -208, -170, -166, -162, -158, -136, -133, -130, -119, -114, -101, -100, -86, -66, -65, -6, 1, 3, 4, 11, 69, 77, 78, 107, 108, 108, 121, 123, 136, 137, 151, 153, 155, 166, 170, 175, 179, 211, 230, 251, 255, 266, 288, 306, 308, 310, 314, 321, 322, 331, 333, 334, 347, 349, 356, 357, 360, 361, 361, 367, 375, 378, 387, 387, 408, 414, 421, 435, 439, 440, 441, 470, 492 };
-    int target = 1682;
+    int S[] = { -1, 2, 2, -5, 0, -1, 4 };
+    int target = 3;
 
     vector<int> nums(S, S + sizeof(S)/sizeof(int));
     vector<vector<int>> result;
