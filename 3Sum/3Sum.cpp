@@ -1,46 +1,41 @@
-// 4Sum.cpp : 定义控制台应用程序的入口点。
+// 3Sum.cpp : 定义控制台应用程序的入口点。
 //
 
 #include "stdafx.h"
+#include <iostream>
 #include <vector>
 #include <algorithm>
-#include <iostream>
 
 using std::vector;
 
 class Solution {
 public:
-    vector<vector<int> > fourSum(vector<int> &nums, int target) {
+    vector<vector<int> > threeSum(vector<int> &nums) {
         int n = nums.size();
         resultArray.clear();
-
-        if (n < 4)  return resultArray;
+        if (n < 3)  return resultArray;
 
         std::sort(nums.begin(), nums.end());
-        
-        int curT;
-        for (int outterStart = 0; outterStart <= n - 4; )
-        {
-            //outterEnd must be traversed from backward to forward. You can use the { -1, 2, 2, -5, 0, -1, 4 }, target = 3 as test case to verify why
-            for (int outterEnd = n - 1; outterEnd >= outterStart + 3;)
-            {
-                curT = target - nums[outterStart] - nums[outterEnd];
-                curOutterStartVal = nums[outterStart];
-                curOutterEndVal = nums[outterEnd];
-                TwoSumInner(nums, outterStart + 1, outterEnd - 1, curT);
-                outterEnd = getNextReverse(nums, outterEnd);
-            }
-            outterStart = getNext(nums, outterStart);
-        }
 
+        threeSum(nums, 0);
         return resultArray;
     }
 
 private:
     vector<vector<int>> resultArray;
     vector<int> singleComb;
-    int     curOutterStartVal;
-    int     curOutterEndVal;
+    int     curStartingVal;
+
+    void threeSum(vector<int> &nums, int target) {
+        int n = nums.size();
+
+        for (int curStart = 0; curStart <= n - 3; )
+        {
+            this->curStartingVal = nums[curStart];
+            TwoSumInner(nums, curStart + 1, n - 1, target - curStartingVal);
+            curStart = getNext(nums, curStart);
+        }
+    }
 
     inline void TwoSumInner(const vector<int> &nums, int start, int end, int target)
     {
@@ -51,10 +46,9 @@ private:
             totalSum = nums[start] + nums[end];
             if (totalSum == target)
             {
-                singleComb.push_back(curOutterStartVal);
+                singleComb.push_back(curStartingVal);
                 singleComb.push_back(nums[start]);
                 singleComb.push_back(nums[end]);
-                singleComb.push_back(curOutterEndVal);
                 resultArray.push_back(singleComb);
                 singleComb.clear();
                 start = getNext(nums, start);
@@ -86,17 +80,15 @@ private:
     }
 };
 
-
 int _tmain(int argc, _TCHAR* argv[])
 {
-    int S[] = { -1, 2, 2, -5, 0, -1, 4 };
-    int target = 3;
+    int S[] = { -1, 0, 1, 2, -1, -4 };
 
-    vector<int> nums(S, S + sizeof(S)/sizeof(int));
+    vector<int> nums(S, S + sizeof(S) / sizeof(int));
     vector<vector<int>> result;
     Solution so;
 
-    result = so.fourSum(nums, target);
+    result = so.threeSum(nums);
 
     int n = result.size(), m;
     for (int i = 0; i < n; i++)
@@ -107,6 +99,6 @@ int _tmain(int argc, _TCHAR* argv[])
         std::cout << std::endl;
     }
 
-	return 0;
+    return 0;
 }
 
