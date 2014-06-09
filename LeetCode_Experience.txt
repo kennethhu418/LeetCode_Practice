@@ -112,6 +112,40 @@ Combinations
 
 	例子： 3 Sum Closest
 
+18. Pay highly attention to the bit shift operator >>, especially for the negative number.
+In Intel platform, the << operator will directly shift all bits, there is no additional operations by the hardware. However, there is additional operations for >> operator. If the shifted variable is a signed value and it is a negative number, then the highest bit of the results will remain 1. Please note that the original signed bit is also shifted.
+int main(int argc, char* argv[])
+{
+    int c = 0x88000000;
+    cout << "The left shifted result of a negative number is:" << endl;
+    for (int i = 0; i < 6; i++)
+    {
+        printf("0x%x ", c);
+        c = c << 1;
+    }
+    cout << endl << endl;
+
+    c = 0x80000008;
+    cout << "The right shifted result of a negative number is:" << endl;
+    for (int i = 0; i < 10; i++)
+    {
+        printf("0x%x ", c);
+        c = c >> 1;
+    }
+    cout << endl << endl;
+
+	return 0;
+}
+
+Output:
+The left shifted result of a negative number is:
+0x88000000 0x10000000 0x20000000 0x40000000 0x80000000 0x0
+
+The right shifted result of a negative number is:
+0x80000008 0xc0000004 0xe0000002 0xf0000001 0xf8000000 0xfc000000 0xfe000000 0xff000000 0xff800000 0xffc00000
+
+So we highly recommend that when do right shift for a signed number, we should assign it to an unsigned number first and then do right shift for the unsigned number.
+
 *****************************************************************************************************************************************
                                    Specific Problems
 *****************************************************************************************************************************************
