@@ -3,122 +3,85 @@
 
 #include "stdafx.h"
 #include <iostream>
+#include <string>
 
+using namespace std;
+
+//题意理解错了有木有！！！
 class Solution {
 public:
     bool isMatch(const char *s, const char *p) {
-        if (s == NULL || p == NULL)
-            return false;
+        const char* curS = s, *curP = p;
 
-        if (*s == '\0' && *p == '\0')
+        while (*curS != '\0' && *curP != '\0' && *(curP+1) != '*')
+        {
+            if (*curS != *curP && *curP != '.')
+                break;
+            curS++; curP++;
+        }
+
+        if (*curS == '\0' && *curP == '\0')
             return true;
 
-        if (*p == '\0')
-            return false;
-
-        bool hasLeadingStars = (*p == '*');
-        if (hasLeadingStars)
+        if (*curS == '\0')
         {
-            p = skipStars(p);
-            if (*p == '\0')
-                return true;
+            if (isEmpty(curP))  return true;
+            return false;
         }
 
-        if (*s == '\0')
+        if (*curP == '\0')  return false;
+
+        //Now neither curS nor curP is '\0'. So it must be either curS != curP or curP + 1 == '*'
+
+        //If it is the case that curS != curP, rather than curP + 1 == '*', return false
+        if (*curS != *curP && *(curP + 1) != '*')
             return false;
 
-        const char* s_start = s, *p_start = p, *p_end = NULL;
-        const char* firstMatchS = NULL;
-        p_end = getNextStar(p_start);
+        //It is the case that curP + 1 == '*'
 
-        while (*s_start != '\0')
+        if (*curP == '.')
         {
-            if (s_start == s && !hasLeadingStars)
-                firstMatchS = findLastMatch(s_start, p_start, p_end, true);
-            else
-                firstMatchS = findLastMatch(s_start, p_start, p_end);
-            if (firstMatchS == NULL)
-                return false;
-
-            s_start = firstMatchS + (p_end - p_start);
-            if (*p_end == '\0')
+            while (*curS != '\0')
             {
-                if (*s_start == '\0')
+                if (isMatch(curS, curP + 2))
                     return true;
-                return false;
+                curS++;
             }
 
-            p_start = skipStars(p_end);
-            if (*p_start == '\0')
+            return false;
+        }
+        
+        //ignore the curP char
+        if (isMatch(curS, curP + 2))
+            return true;
+
+        while (*curS != '\0' && *curS == *curP)
+        {
+            if (isMatch(curS + 1, curP + 2))
                 return true;
-            p_end = getNextStar(p_start);
+            curS++;
         }
 
-        return false;
+        return false; 
     }
 
 private:
-    inline const char* skipStars(const char* s)
+    inline bool isEmpty(const char* s)
     {
-        while (*s == '*')
-            s++;
-        return s;
-    }
+        if (*s == '\0')
+            return true;
 
-    inline const char* getNextStar(const char* s)
-    {
         while (*s != '\0')
         {
-            if (*s == '*')
-                return s;
+            if (*s != '*')
+            {
+                if (*(s + 1) == '\0' || *(s + 1) != '*')
+                    return false;
+            }
             s++;
         }
 
-        return s;
-    }
-
-    inline const char* findLastMatch(const char* s, const char* p_start, const char* p_end, bool alignedMatch = false)
-    {
-        const char* curSStart = s, *curS = s, *curP = p_start;
-        const char* resultS = NULL;
-
-        while (*curSStart != '\0')
-        {
-            curP = p_start;
-            curS = curSStart;
-            while (*curS != '\0' && curP < p_end)
-            {
-                if (*curS != *curP && *curP != '.')
-                    break;
-                curS++; curP++;
-            }
-
-            if (*curS == '\0' && curP == p_end)
-            {
-                resultS = curSStart;
-                break;
-            }
-
-            if (*curS == '\0')
-                break;
-
-            if (curP == p_end)
-            {
-                if (alignedMatch)
-                    return curSStart;
-
-                resultS = curSStart;
-                curSStart++;
-                continue;
-            }
-
-            if (alignedMatch)
-                return NULL;
-
-            curSStart++;
-        }
-
-        return resultS;
+        return true;
     }
 };
 
