@@ -151,7 +151,7 @@ So we highly recommend that when do right shift for a signed number, we should a
 
 19. 下面两道字符串匹配题请多加多加多加练习，知道练到会背为止！！！！
 Regular_Expression_Matching
-Wildcard Maching
+Wildcard Matching
 
 *****************************************************************************************************************************************
                                    Specific Problems
