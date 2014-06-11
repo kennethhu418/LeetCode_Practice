@@ -3,7 +3,6 @@
 
 #include "stdafx.h"
 #include <iostream>
-#include <assert.h>
 
 class Solution {
 public:
@@ -35,9 +34,9 @@ public:
         while (*s_start != '\0')
         {
             if (s_start == s && !hasLeadingStars)
-                firstMatchS = findFirstMatch(s_start, p_start, p_end, true);
+                firstMatchS = findLastMatch(s_start, p_start, p_end, true);
             else
-                firstMatchS = findFirstMatch(s_start, p_start, p_end);
+                firstMatchS = findLastMatch(s_start, p_start, p_end);
             if (firstMatchS == NULL)
                 return false;
 
@@ -95,21 +94,31 @@ private:
             }
 
             if (*curS == '\0' && curP == p_end)
-                return curSStart;
+            {
+                resultS = curSStart;
+                break;
+            }
 
             if (*curS == '\0')
-                return NULL;
+                break;
 
             if (curP == p_end)
-                return curSStart;
+            {
+                if (alignedMatch)
+                    return curSStart;
+
+                resultS = curSStart;
+                curSStart++;
+                continue;
+            }
 
             if (alignedMatch)
-                return false;
+                return NULL;
 
             curSStart++;
         }
 
-        return NULL;
+        return resultS;
     }
 };
 
