@@ -38,11 +38,15 @@ public:
             return false;
 
         //It is the case that curP + 1 == '*'
+        bool reachedEnd = false;
 
         if (*curP == '.')
         {
-            while (*curS != '\0')
+            while (!reachedEnd) //isMatch is also used to judge the case when s == "", so we should judge this case.
             {
+                if (*curS == '\0')
+                    reachedEnd = true;
+
                 if (isMatch(curS, curP + 2))
                     return true;
                 curS++;
