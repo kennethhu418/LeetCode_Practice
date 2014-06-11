@@ -289,6 +289,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Integer_to_Roman", "Integer
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Container_With_Most_Water", "Container_With_Most_Water\Container_With_Most_Water.vcxproj", "{DA203392-F181-496E-A7EE-108AF1EB2225}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Regular_Expression_Matching", "Regular_Expression_Matching\Regular_Expression_Matching.vcxproj", "{94FDB319-DF8A-4391-A8F3-6FAEB3DF108A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -855,6 +857,10 @@ Global
 		{DA203392-F181-496E-A7EE-108AF1EB2225}.Debug|Win32.Build.0 = Debug|Win32
 		{DA203392-F181-496E-A7EE-108AF1EB2225}.Release|Win32.ActiveCfg = Release|Win32
 		{DA203392-F181-496E-A7EE-108AF1EB2225}.Release|Win32.Build.0 = Release|Win32
+		{94FDB319-DF8A-4391-A8F3-6FAEB3DF108A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{94FDB319-DF8A-4391-A8F3-6FAEB3DF108A}.Debug|Win32.Build.0 = Debug|Win32
+		{94FDB319-DF8A-4391-A8F3-6FAEB3DF108A}.Release|Win32.ActiveCfg = Release|Win32
+		{94FDB319-DF8A-4391-A8F3-6FAEB3DF108A}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
