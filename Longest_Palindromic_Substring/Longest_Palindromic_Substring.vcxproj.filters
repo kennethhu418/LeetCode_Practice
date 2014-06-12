@@ -33,4 +33,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Longest Palindromic Substring Part II _ LeetCode (2).png">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

@@ -86,6 +86,9 @@
     <ClCompile Include="Longest_Palindromic_Substring.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Longest Palindromic Substring Part II _ LeetCode (2).png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
