@@ -11,7 +11,7 @@ using std::vector;
 using std::string;
 
 #define size_t  std::size_t
-#define INVALID_CHAR  '@'
+#define INVALID_CHAR  '@'   //any char is OK actually. For example, you can switch it to 'a'
 
 //第一版本的算法的时间复杂度是O(n^2)且空间复杂度也是O(n^2)
 //这里我们采用时间复杂度和空间复杂度均为O(n)的解法
