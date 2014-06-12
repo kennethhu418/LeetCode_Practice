@@ -307,6 +307,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Median_of_Two_Sorted_Arrays
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Two_Sum", "Two_Sum\Two_Sum.vcxproj", "{B3014A42-457A-4F23-A332-C7747347DE45}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZigZag_Conversion", "ZigZag_Conversion\ZigZag_Conversion.vcxproj", "{EF3761D6-1BFF-48CF-BB29-59F0C97B69C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -909,6 +911,10 @@ Global
 		{B3014A42-457A-4F23-A332-C7747347DE45}.Debug|Win32.Build.0 = Debug|Win32
 		{B3014A42-457A-4F23-A332-C7747347DE45}.Release|Win32.ActiveCfg = Release|Win32
 		{B3014A42-457A-4F23-A332-C7747347DE45}.Release|Win32.Build.0 = Release|Win32
+		{EF3761D6-1BFF-48CF-BB29-59F0C97B69C5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EF3761D6-1BFF-48CF-BB29-59F0C97B69C5}.Debug|Win32.Build.0 = Debug|Win32
+		{EF3761D6-1BFF-48CF-BB29-59F0C97B69C5}.Release|Win32.ActiveCfg = Release|Win32
+		{EF3761D6-1BFF-48CF-BB29-59F0C97B69C5}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
