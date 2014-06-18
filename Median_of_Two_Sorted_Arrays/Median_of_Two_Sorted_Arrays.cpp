@@ -161,6 +161,9 @@ int _tmain(int argc, _TCHAR* argv[])
 
     using namespace std;
 
+    int a = 0x80000000, b = 0x80000000;
+    cout << a / b << endl;
+
     srand(time(0));
 
     cout << "Usage:\nEnter \"R\" to use last generated arrays. Enter other strings to generate new arrays." << endl<<endl;

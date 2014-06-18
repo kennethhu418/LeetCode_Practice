@@ -15,57 +15,87 @@ typedef struct __Interval {
 class Solution {
 public:
     vector<Interval> insert(vector<Interval> &array, Interval newInterval) {
-        vector<Interval>    result;
-        int     n = array.size();
+        int n = array.size();
+        result.clear();
+
         if (n == 0)
         {
             result.push_back(newInterval);
             return result;
         }
 
-        //find non-overlap intervals before the new Interval and directly put them into the result
-        int     curPos;
-        for (curPos = 0; curPos < n; curPos++)
+        int extendedStart, extendedEnd;
+        int endFindStart = 0, i;
+
+        for (i = 0; i < n; i++)
         {
-            if (array[curPos].end >= newInterval.start)
+            if (newInterval.start > array[i].end)
+                continue;
+
+            if (newInterval.start < array[i].start)
+            {
+                extendedStart = newInterval.start;
                 break;
-            result.push_back(array[curPos]);
+            }
+
+            extendedStart = array[i].start;
+            break;
         }
 
-        if (curPos == n)
+        if (i == n)
         {
+            result = array;
             result.push_back(newInterval);
             return result;
         }
 
-        //merge the newInterval with the overlapped intervals if there is any
-        if (array[curPos].start > newInterval.end)
-            result.push_back(newInterval);
-        else
+        for (; i < n; i++)
         {
-            newInterval.start = (newInterval.start < array[curPos].start ? newInterval.start : array[curPos].start);
-            newInterval.end = (newInterval.end >array[curPos].end ? newInterval.end : array[curPos].end);
-            curPos++;
-
-            while (curPos < n)
+            if (newInterval.end > array[i].end)
+                continue;
+            if (newInterval.end < array[i].start)
             {
-                if (array[curPos].start > newInterval.end)
-                    break;
-                newInterval.end = (newInterval.end >array[curPos].end ? newInterval.end : array[curPos].end);
-                curPos++;
+                extendedEnd = newInterval.end;
+                break;
+            }
+            extendedEnd = array[i].end;
+            break;
+        }
+        if (i == n)
+            extendedEnd = newInterval.end;
+
+        newInterval.start = extendedStart;
+        newInterval.end = extendedEnd;
+
+        excludeIntervals(array, newInterval);
+        return result;
+    }
+
+private:
+    vector<Interval> result;
+
+    void excludeIntervals(vector<Interval> &array, Interval& targetInterval)
+    {
+        int i;
+        for (i = 0; i < array.size(); i++)
+        {
+            if (array[i].end < targetInterval.start)
+            {
+                result.push_back(array[i]);
+                continue;
             }
 
-            result.push_back(newInterval);
+            break;
         }
 
-        //at last put all remaining non-overlap array intervals into the result
-        while (curPos < n)
+        result.push_back(targetInterval);
+
+        for (; i < array.size(); i++)
         {
-            result.push_back(array[curPos]);
-            curPos++;
+            if (array[i].start <= targetInterval.end)
+                continue;
+            result.push_back(array[i]);
         }
-
-        return result;
     }
 };
 

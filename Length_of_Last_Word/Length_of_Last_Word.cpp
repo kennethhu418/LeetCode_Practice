@@ -9,56 +9,31 @@ public:
         if (s == NULL || *s == '\0')
             return 0;
 
-        int     wordStart = 0, wordEnd = 0;
-        int     len = 0;
+        const char* firstLetter = getNextLetter(s);
 
-        do
+        int wordLen = 0;
+        while (*firstLetter != '\0')
         {
-            wordStart = getFirstLetter(s, wordEnd);
-            if (wordStart == -1)
-                return len;
+            wordLen = 0;
 
-            wordEnd = getFirstSpace(s, wordStart + 1);
+            while (*firstLetter != '\0' && *firstLetter != ' ')
+            {
+                wordLen++;
+                firstLetter++;
+            }
 
-            len = wordEnd - wordStart;
-        } while (s[wordEnd] != '\0');
+            firstLetter = getNextLetter(firstLetter);
+        }
 
-        return len;       
+        return wordLen;
     }
 
 private:
-    inline int getFirstLetter(const char* s, int start)
+    inline const char* getNextLetter(const char* s)
     {
-        s = s + start;
-        if (*s == '\0')
-            return -1;
-
-        while (*s != '\0')
-        {
-            if (*s != ' ')
-                return start;
-            start++;
+        while (*s != '\0' && *s == ' ')
             s++;
-        }
-
-        return -1;
-    }
-
-    inline int getFirstSpace(const char* s, int start)
-    {
-        s = s + start;
-        if (*s == '\0')
-            return start;
-
-        while (*s != '\0')
-        {
-            if (*s == ' ')
-                return start;
-            start++;
-            s++;
-        }
-
-        return start;
+        return s;
     }
 };
 
