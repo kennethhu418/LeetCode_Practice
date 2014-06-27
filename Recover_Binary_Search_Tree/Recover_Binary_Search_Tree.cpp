@@ -3,9 +3,9 @@
 
 #include "stdafx.h"
 #include <assert.h>
+#include <stack>
 
-#define DEFAULT_MIN_VAL     (0 - 0x7FFFFFFF)
-#define DEFAULT_MAX_VAL     0x7FFFFFFF
+using std::stack;
 
 typedef struct __TreeNode {
     int val;
@@ -15,47 +15,236 @@ typedef struct __TreeNode {
 }TreeNode;
 
 class Solution {
-
 public:
     void recoverTree(TreeNode *root) {
         if (root == NULL)
             return;
 
-        swappedLargeOne = swappedSmallerOne = curLargestNode = NULL;
+        target1 = NULL;
+        target2 = NULL;
+        lastestVisitedNode = NULL;
 
-        findSwappedElements(root);
+        InorderTraversalWithCheck(root);
 
-        swappedLargeOne->val ^= swappedSmallerOne->val;
-        swappedSmallerOne->val ^= swappedLargeOne->val;
-        swappedLargeOne->val ^= swappedSmallerOne->val;
+        assert(target1 && target2);
+        target1->val ^= target2->val;
+        target2->val ^= target1->val;
+        target1->val ^= target2->val;
     }
 
 private:
-    TreeNode *swappedLargeOne, *swappedSmallerOne, *curLargestNode;
+    TreeNode* target1;
+    TreeNode* target2;
+    TreeNode* lastestVisitedNode;
 
-    void findSwappedElements(TreeNode *root)
+    void InorderTraversalWithCheck(TreeNode* root)
     {
         if (root == NULL)
             return;
 
-        findSwappedElements(root->left);
-
-        if (curLargestNode && curLargestNode->val > root->val)
+        InorderTraversalWithCheck(root->left);
+        if (lastestVisitedNode != NULL)
         {
-            if (swappedLargeOne == NULL)
+            if (lastestVisitedNode->val > root->val)
             {
-                swappedLargeOne = curLargestNode;
-                swappedSmallerOne = root;
-            }
-            else
-            {
-                swappedSmallerOne = root;
+                if (target1 == NULL)
+                    target1 = lastestVisitedNode;
+                target2 = root;
             }
         }
 
-        curLargestNode = root;
+        lastestVisitedNode = root;
 
-        findSwappedElements(root->right);
+        InorderTraversalWithCheck(root->right);
+    }
+};
+
+class Solution_NonRecursive{
+public:
+    void recoverTree(TreeNode *root) {
+        if (root == NULL)
+            return;
+        if (root->left == NULL && root->right == NULL)
+            return;
+
+        TreeNode* curNode = getSmallestNode(root); //get the smallest node based on structure
+        TreeNode* nextNode = NULL;
+        TreeNode* firstNode = NULL, *secondNode = NULL;
+
+        while (curNode)
+        {
+            nextNode = getNextLargerNode(curNode); //get the next larger node based on structure
+            if (nextNode == NULL)
+                break;
+
+            if (nextNode->val < curNode->val)
+            {
+                firstNode = curNode;
+                break;
+            }
+
+            curNode = nextNode;
+        }
+
+        ClearAuxBuffer(); //clear stack
+
+        curNode = getLargestNode(root); //get the largest node based on structure
+        nextNode = NULL;
+        while (curNode)
+        {
+            nextNode = getNextSmallerNode(curNode); //get the next smaller node based on structure
+            if (nextNode == NULL)
+                break;
+
+            if (nextNode->val > curNode->val)
+            {
+                secondNode = curNode;
+                break;
+            }
+
+            curNode = nextNode;
+        }
+
+        ClearAuxBuffer(); //clear stack
+
+        assert(firstNode && secondNode);
+
+        firstNode->val ^= secondNode->val;
+        secondNode->val ^= firstNode->val;
+        firstNode->val ^= secondNode->val;
+    }
+
+private:
+    stack<TreeNode*>    parentStack;
+
+    TreeNode* getSmallestNode(TreeNode* root)
+    {
+        if (root == NULL)
+            return NULL;
+
+        while (root->left)
+        {
+            parentStack.push(root);
+            root = root->left;
+        }
+
+        return root;
+    }
+
+    TreeNode* getLargestNode(TreeNode* root)
+    {
+        if (root == NULL)
+            return NULL;
+
+        while (root->right)
+        {
+            parentStack.push(root);
+            root = root->right;
+        }
+
+        return root;
+    }
+
+    inline TreeNode* getNextLargerNode(TreeNode* node)
+    {
+        if (node == NULL)
+            return NULL;
+
+        if (node->right)
+        {
+            parentStack.push(node);
+            node = node->right;
+
+            while (node->left)
+            {
+                parentStack.push(node);
+                node = node->left;
+            }
+
+            return node;
+        }
+
+        if (parentStack.empty())
+            return NULL;
+
+        TreeNode* parent = parentStack.top();
+        if (parent->left == node)
+        {
+            parentStack.pop();
+            return parent;
+        }
+
+        while (!parentStack.empty())
+        {
+            parentStack.pop();
+            if (parentStack.empty())
+                return NULL;
+
+            if (parentStack.top()->left == parent)
+            {
+                parent = parentStack.top();
+                parentStack.pop();
+                return parent;
+            }
+
+            parent = parentStack.top();
+        }
+
+        return NULL;
+    }
+
+    inline TreeNode* getNextSmallerNode(TreeNode* node)
+    {
+        if (node == NULL)
+            return NULL;
+
+        if (node->left)
+        {
+            parentStack.push(node);
+            node = node->left;
+
+            while (node->right)
+            {
+                parentStack.push(node);
+                node = node->right;
+            }
+
+            return node;
+        }
+
+        if (parentStack.empty())
+            return NULL;
+
+        TreeNode* parent = parentStack.top();
+        if (parent->right == node)
+        {
+            parentStack.pop();
+            return parent;
+        }
+
+        while (!parentStack.empty())
+        {
+            parentStack.pop();
+            if (parentStack.empty())
+                return NULL;
+
+            if (parentStack.top()->right == parent)
+            {
+                parent = parentStack.top();
+                parentStack.pop();
+                return parent;
+            }
+
+            parent = parentStack.top();
+        }
+
+        return NULL;
+    }
+
+    void ClearAuxBuffer()
+    {
+        while (!parentStack.empty())
+            parentStack.pop();
     }
 };
 
