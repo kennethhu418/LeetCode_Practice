@@ -3,169 +3,140 @@
 
 #include "stdafx.h"
 
-
-
-
 typedef struct __ListNode {
     int val;
     __ListNode *next;
     __ListNode(int x) : val(x), next(NULL) {}
 }ListNode;
 
-
 class Solution {
 public:
     ListNode *sortList(ListNode *head) {
         if (head == NULL || head->next == NULL)
-        {
             return head;
-        }
 
-        ListNode* curNode, *prevNodeT, *nextNodeT, *list1H, *list2H, *list1E, *list2E, *newH, *newE;
-        int size = 1, totalCount = 0, curCount = 0;
+        ListNode* tail = NULL, *prevTail = NULL, *nextHead = NULL;
+        mergeUnit = 1;
 
-        //First get total count of nodes
-        curNode = head;
-        while(curNode)
+        while (true)
         {
-            totalCount++;
-            curNode = curNode->next;
-        }
+            head = sortCurrentUnit(head, tail);
+            if (tail->next == NULL)
+                break;
 
-        while(size < totalCount)
-        {
-            curNode = head;
-            prevNodeT = NULL;
-            list1H = head;
-            curCount = size;
-            
-            while(true)
+            prevTail = tail;
+            while (prevTail->next)
             {
-                //Get List1's head and end
-                while(curCount)
-                {
-                    if (curNode == NULL)
-                        break;
-
-                    curCount--;
-                    list1E = curNode;
-                    curNode = curNode->next;               
-                }
-
-                if (curCount > 0)   //list 1 is not full with size count of nodes
-                    break;
-
-                if (list1E->next == NULL) //list 2 has no nodes
-                    break;
-
-                //Get List2's head and end
-                list2H = list1E->next; curCount = size; curNode = list1E->next;
-                while(curCount)
-                {
-                    if (curNode == NULL)
-                        break;
-
-                    curCount--;
-                    list2E = curNode;
-                    curNode = curNode->next;               
-                }
-
-                nextNodeT = list2E->next;
-
-                //Now merge the two sorted lists
-                newH = NULL; 
-                newE = NULL;
-                MergeSortedLists(list1H, list1E, list2H, list2E, &newH, &newE);
-
-                //Adjust head and tail
-                if (prevNodeT == NULL)
-                {
-                    head = newH;
-                }
-                else
-                    prevNodeT->next = newH;
-
-                newE->next = nextNodeT;
-
-                list1H = newE->next;
-                curCount = size;
-                curNode = newE->next;
-                prevNodeT = newE;
+                prevTail->next = sortCurrentUnit(prevTail->next, tail);
+                prevTail = tail;
             }
 
-            size = size<<1;
+            mergeUnit *= 2;
         }
 
-        return head;        
+        return head;
     }
 
 private:
-    void MergeSortedLists(ListNode* list1H, ListNode* list1E, ListNode* list2H, ListNode* list2E, ListNode** newH, ListNode** newE)
+    unsigned int mergeUnit;
+    ListNode* curHead1;
+    ListNode* curTail1;
+    ListNode* curHead2;
+    ListNode* curTail2;
+
+    inline ListNode* sortCurrentUnit(ListNode* head, ListNode* &tail)
     {
-        if (newH == NULL || newE == NULL)
-        {
-            return;
-        }
-        
-        if (list1H == NULL)
-        {
-            *newH = list2H;
-            *newE = list2E;
-            return;
-        }
+        if (head == NULL)
+            return NULL;
 
-        if (list2H == NULL)
+        tail = NULL;
+        ListNode* nextNode = NULL;
+
+        curHead1 = head;
+        curTail1 = getNodeByIndex(curHead1, mergeUnit - 1);
+        if (curTail1->next == NULL)
         {
-            *newH = list1H;
-            *newE = list1E;
-            return;
+            tail = curTail1;
+            return curHead1;
         }
 
-        ListNode* head = NULL, *tail = NULL, *curNode1 = list1H, *curNode2 = list2H, *list2EOL = list2E->next, *list1EOL = list1E->next;
+        curHead2 = curTail1->next;
+        curTail2 = getNodeByIndex(curHead2, mergeUnit - 1);
 
-        while(curNode1 != list1EOL && curNode2 != list2EOL)
+        nextNode = curTail2->next;
+        curTail1->next = NULL;
+        curTail2->next = NULL;
+
+        head = mergeLists(curHead1, curHead2, tail);
+        tail->next = nextNode;
+        return head;
+    }
+
+    inline ListNode* getNodeByIndex(ListNode* head, unsigned int targetIndex)
+    {
+        unsigned int curIndex = 0;
+        ListNode* prevNode = NULL;
+
+        while (head)
         {
-            if (curNode1->val < curNode2->val)
+            if (curIndex == targetIndex)
+                return head;
+            prevNode = head;
+            head = head->next;
+            curIndex++;
+        }
+
+        return prevNode;
+    }
+
+    inline ListNode* mergeLists(ListNode* list1, ListNode* list2, ListNode* &tail)
+    {
+        ListNode* head = NULL;
+        tail = NULL;
+
+        while (list1 && list2)
+        {
+            if (list1->val < list2->val)
             {
                 if (head == NULL)
-                {
-                    head = tail = curNode1;
-                }
+                    head = tail = list1;
                 else
                 {
-                    tail->next = curNode1;
-                    tail = curNode1;
+                    tail->next = list1;
+                    tail = list1;
                 }
-                curNode1 = curNode1->next;
-                continue;
-            }
-
-            if (head == NULL)
-            {
-                head = tail = curNode2;
+                list1 = list1->next;
             }
             else
             {
-                tail->next = curNode2;
-                tail = curNode2;
+                if (head == NULL)
+                    head = tail = list2;
+                else
+                {
+                    tail->next = list2;
+                    tail = list2;
+                }
+                list2 = list2->next;
             }
-            curNode2 = curNode2->next;
         }
 
-        if (curNode1 != list1EOL)
+        if (list2)
+            list1 = list2;
+
+        while (list1)
         {
-            tail->next = curNode1;
-            tail = list1E;
-        }
-        else if (curNode2 != list2EOL)
-        {
-            tail->next = curNode2;
-            tail = list2E;
+            if (head == NULL)
+                head = tail = list1;
+            else
+            {
+                tail->next = list1;
+                tail = list1;
+            }
+            list1 = list1->next;
         }
 
-        *newH = head;
-        *newE = tail;
-        return;        
+        tail->next = NULL;
+        return head;
     }
 };
 

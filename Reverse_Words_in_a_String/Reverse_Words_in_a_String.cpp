@@ -11,133 +11,86 @@ using namespace std;
 class Solution {
 public:
     void reverseWords(string &s) {
-
-        if(s[0] == '\0')
+        unsigned int n = s.size();
+        if (n == 0)
             return;
 
-        //First remove residule spaces
-        removeResiduleSpace(s);
+        RemoveAdditionalSpaces(s);
 
-        //Then reverse each word in the sentense
-        reverseEachWord(s);
+        n = s.size();
+        if (n == 0)
+            return;
 
-        //Last reverse the whole string
-        reverseStr(s);
+        unsigned int curPos = 0, nextSpace = 0;
+        while (curPos < n)
+        {
+            nextSpace = getNextSpace(s, curPos);
+            reverseString(s, curPos, nextSpace - 1);
+            curPos = nextSpace + 1;
+        }
 
-        const char* str = s.c_str();
-        s = str;
+        reverseString(s, 0, n - 1);
     }
 
 private:
-
-    inline void reverseStr(char* start, char* end)
+    inline void RemoveAdditionalSpaces(string &s)
     {
-        char tmp;
-        if(start == NULL || end == NULL || start > end)
-            return;
+        unsigned int n = s.size();
+        unsigned int nextPlacePos = 0, curPos = 0, curWordStart = 0, nextSpace = 0;
 
-        while(start < end)
+        //get the first word start
+        curPos = getNextLetter(s, 0);
+        if (curPos == n)
         {
-            tmp = *start;
-            *start = *end;
-            *end = tmp;
-            start++;
-            end--;
+            s.clear();
+            return;
         }
 
-    }
-
-    void reverseStr(string& s)
-    {
-        char* start = &(s[0]);
-        char* end = NULL;
-
-        while(*start != '\0')
-            start++;
-        end = start - 1;
-        start = &(s.at(0));
-
-        reverseStr(start, end);
-    }
-
-    void reverseEachWord(string& s)
-    {
-        char* start = &(s[0]);
-        char* end = NULL;
-        char* currentTpos = start;
-
-        while(*currentTpos != '\0')
+        while (curPos < n)
         {
-            if(*currentTpos != ' ')
+            nextSpace = getNextSpace(s, curPos);
+            if (nextPlacePos == curPos)
+                nextPlacePos += (nextSpace - curPos);
+            else
             {
-                currentTpos++;
-                continue;
+                while (curPos < nextSpace)
+                    s[nextPlacePos++] = s[curPos++];
             }
 
-            end = currentTpos - 1;
-            reverseStr(start, end);
-            currentTpos++;
-            start = currentTpos;
-            end = NULL;
+            s[nextPlacePos++] = ' ';
+            curPos = getNextLetter(s, nextSpace);
         }
 
-        end = currentTpos - 1;
-        reverseStr(start, end);
+        s.resize(nextPlacePos - 1);
     }
 
-
-
-    void removeResiduleSpace(string &s)
+    inline unsigned int getNextLetter(const string &s, int curPos)
     {
-        char* currentTpos = &(s[0]);
-        char* currentApos = currentTpos;
-        char* currentStrpos = NULL;
-
-        if(s[0] == '\0')
-            return;
-
-        while(*currentTpos != '\0')
-        {
-            if(*currentTpos == ' ')
-            {
-                currentTpos++;
-                continue;
-            }
-
-            if(currentStrpos == NULL)
-                currentStrpos = currentTpos;
-
-            if(*(currentTpos+1) == ' ' || *(currentTpos+1) == '\0')
-            {
-                if(currentStrpos == currentApos)
-                    currentApos = currentTpos + 1;
-                else
-                {
-                    while(currentStrpos <= currentTpos)
-                        *(currentApos++) = *(currentStrpos++);
-                }
-
-                if(*(currentTpos+1) == ' ')
-                    *(currentApos++) = ' ';
-                else
-                    break;
-
-                currentTpos += 2;
-                currentStrpos = NULL;
-                continue;
-            }
-
-            currentTpos++;
-        } // end while
-
-        *currentApos = '\0';
-
-        if(*(currentApos-1) == ' ')
-            *(currentApos-1) = '\0';
-
+        unsigned int n = s.size();
+        while (curPos < n && s[curPos] == ' ')
+            curPos++;
+        return curPos;
     }
 
+    inline unsigned int getNextSpace(const string &s, int curPos)
+    {
+        unsigned int n = s.size();
+        while (curPos < n && s[curPos] != ' ')
+            curPos++;
+        return curPos;
+    }
 
+    inline void reverseString(string &s, int start, int end)
+    {
+        char tempC;
+        while (start < end)
+        {
+            tempC = s[start];
+            s[start] = s[end];
+            s[end] = tempC;
+            start++; end--;
+        }
+    }
 };
 
 int _tmain(int argc, _TCHAR* argv[])
