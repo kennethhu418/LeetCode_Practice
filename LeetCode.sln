@@ -309,6 +309,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Two_Sum", "Two_Sum\Two_Sum.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZigZag_Conversion", "ZigZag_Conversion\ZigZag_Conversion.vcxproj", "{EF3761D6-1BFF-48CF-BB29-59F0C97B69C5}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Largest Binary Search Tree in a Binary Tree", "Largest Binary Search Tree in a Binary Tree\Largest Binary Search Tree in a Binary Tree.vcxproj", "{1FCA30AE-52FA-4F66-B851-5A59CB42D6A3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Maximum Product Subarray", "Maximum Product Subarray\Maximum Product Subarray.vcxproj", "{79397181-32B0-48CB-A517-909B54FAA2C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -915,6 +919,14 @@ Global
 		{EF3761D6-1BFF-48CF-BB29-59F0C97B69C5}.Debug|Win32.Build.0 = Debug|Win32
 		{EF3761D6-1BFF-48CF-BB29-59F0C97B69C5}.Release|Win32.ActiveCfg = Release|Win32
 		{EF3761D6-1BFF-48CF-BB29-59F0C97B69C5}.Release|Win32.Build.0 = Release|Win32
+		{1FCA30AE-52FA-4F66-B851-5A59CB42D6A3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1FCA30AE-52FA-4F66-B851-5A59CB42D6A3}.Debug|Win32.Build.0 = Debug|Win32
+		{1FCA30AE-52FA-4F66-B851-5A59CB42D6A3}.Release|Win32.ActiveCfg = Release|Win32
+		{1FCA30AE-52FA-4F66-B851-5A59CB42D6A3}.Release|Win32.Build.0 = Release|Win32
+		{79397181-32B0-48CB-A517-909B54FAA2C1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{79397181-32B0-48CB-A517-909B54FAA2C1}.Debug|Win32.Build.0 = Debug|Win32
+		{79397181-32B0-48CB-A517-909B54FAA2C1}.Release|Win32.ActiveCfg = Release|Win32
+		{79397181-32B0-48CB-A517-909B54FAA2C1}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

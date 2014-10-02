@@ -7,82 +7,61 @@
 
 using namespace std;
 
-//题意理解错了有木有！！！
+#define NULL_CHAR '\0'
+
 class Solution {
 public:
     bool isMatch(const char *s, const char *p) {
-        const char* curS = s, *curP = p;
+        if (*p == NULL_CHAR)
+            return *s == NULL_CHAR;
+        if (*s == NULL_CHAR)
+            return allEmpty(p);
 
-        while (*curS != '\0' && *curP != '\0' && *(curP+1) != '*')
+        if (*(p + 1) != '*')
         {
-            if (*curS != *curP && *curP != '.')
-                break;
-            curS++; curP++;
-        }
-
-        if (*curS == '\0' && *curP == '\0')
-            return true;
-
-        if (*curS == '\0')
-        {
-            if (isEmpty(curP))  return true;
+            if (*p == *s || *p == '.')
+                return isMatch(s + 1, p + 1);
             return false;
         }
 
-        if (*curP == '\0')  return false;
-
-        //Now neither curS nor curP is '\0'. So it must be either curS != curP or curP + 1 == '*'
-
-        //If it is the case that curS != curP, rather than curP + 1 == '*', return false
-        if (*curS != *curP && *(curP + 1) != '*')
-            return false;
-
-        //It is the case that curP + 1 == '*'
-        bool reachedEnd = false;
-
-        if (*curP == '.')
+        //".*" means we can starting matching from any position of src string
+        if (*p == '.')
         {
-            while (!reachedEnd) //isMatch is also used to judge the case when s == "", so we should judge this case.
+            while (*s != NULL_CHAR)
             {
-                if (*curS == '\0')
-                    reachedEnd = true;
-
-                if (isMatch(curS, curP + 2))
+                if (isMatch(s, p + 2))
                     return true;
-                curS++;
+                s++;
             }
 
-            return false;
+            return allEmpty(p);
         }
-        
-        //ignore the curP char
-        if (isMatch(curS, curP + 2))
+
+        //"x*" can mean empty string
+        if (isMatch(s, p + 2))
             return true;
 
-        while (*curS != '\0' && *curS == *curP)
+        //"x*" (x != '.') can also mean repeat x
+        while (*s == *p)
         {
-            if (isMatch(curS + 1, curP + 2))
+            if (isMatch(s + 1, p + 2))
                 return true;
-            curS++;
+            s++;
         }
-
-        return false; 
+        return false;
     }
 
 private:
-    inline bool isEmpty(const char* s)
+    inline bool allEmpty(const char* str)
     {
-        if (*s == '\0')
+        if (*str == NULL_CHAR)
             return true;
 
-        while (*s != '\0')
+        while (*str != NULL_CHAR)
         {
-            if (*s != '*')
-            {
-                if (*(s + 1) == '\0' || *(s + 1) != '*')
-                    return false;
-            }
-            s++;
+            if (*(str + 1) != '*')
+                return false;
+            str += 2;
         }
 
         return true;
