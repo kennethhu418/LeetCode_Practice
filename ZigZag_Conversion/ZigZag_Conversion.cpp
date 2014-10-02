@@ -3,88 +3,33 @@
 
 #include "stdafx.h"
 #include <string>
-#include <vector>
-#include <assert.h>
 #include <iostream>
 
-using std::string;
+using namespace std;
 
+/************************************************************************************************************************
+Version 2: With O(n) time complexity and O(1) space time complexity
+充分利用每个zigzag是2*nRows - 2个字符就可以。对于每一行先把往下走的那一列的字符加进去，然后有往上走的字符再加进去即可
+ ************************************************************************************************************************/
 class Solution {
 public:
-    string convert(string s, int nRows) {
-        int sCount = s.size();
-        if (sCount < 2 || nRows < 2)
-            return s;
+    string convert(const string &s, int nRows) {
+        int n = s.size();
+        if (n == 1 || nRows == 1) return s;
 
-        string result(sCount, ' ');
+        string result;
+        int unitSize = 2 * nRows - 2, increaseLen = 0;
 
-        ConstructRowStartArray(sCount, nRows);
-
-        int curRow = 0, curPos = 0;
-        while (curPos < sCount)
-        {
-            for (curRow = 0; curRow < nRows && curPos < sCount; curRow++)
-            {
-                result[rowStartIndex[curRow]] = s[curPos];
-                rowStartIndex[curRow]++;
-                curPos++;                
-            }
-
-            for (curRow = nRows - 2; curRow > 0 && curPos < sCount; curRow--)
-            {
-                result[rowStartIndex[curRow]] = s[curPos];
-                rowStartIndex[curRow]++;
-                curPos++;
+        for (int curRow = 0; curRow < nRows; ++curRow){
+            increaseLen = ((nRows - 1 - curRow) << 1);
+            for (int i = curRow; i < n; i += unitSize){
+                result += s[i];
+                if (curRow > 0 && curRow < nRows - 1 && i + increaseLen < n)
+                    result += s[i + increaseLen];
             }
         }
 
         return result;
-    }
-
-private:
-    std::vector<int> rowStartIndex;
-
-    void ConstructRowStartArray(int sCount, int rowCount)
-    {
-        if (rowCount == 0 || sCount == 0)  return;
-
-        rowStartIndex.resize(rowCount);
-        if (rowCount == 1)
-        {
-            rowStartIndex[0] = 0;
-            return;
-        }
-
-        int unitSize = 2 * (rowCount - 1);
-        int unitCount = sCount / unitSize;
-        int remainingCount = sCount - unitCount*unitSize;
-        int totalCount = 0;
-
-        rowStartIndex[0] = unitCount;
-        rowStartIndex[rowCount - 1] = unitCount;
-        for (int i = 1; i < rowCount - 1; i++)
-            rowStartIndex[i] = 2 * unitCount;
-
-        for (int i = 0; i < rowCount && remainingCount; i++)
-        {
-            rowStartIndex[i]++;
-            remainingCount--;
-        }
-
-        for (int i = rowCount - 2; i > 0 && remainingCount; i--)
-        {
-            rowStartIndex[i]++;
-            remainingCount--;
-        }
-
-        for (int i = 0; i < rowCount; i++)
-        {
-            remainingCount = rowStartIndex[i];
-            rowStartIndex[i] = totalCount;
-            totalCount += remainingCount;
-        }
-
-        assert(totalCount == sCount);
     }
 };
 
