@@ -7,50 +7,35 @@
 
 using std::vector;
 
+#define SUDOKU_SIZE 9 
+
 class Solution {
 public:
     bool isValidSudoku(vector<vector<char> > &board) {
-        assert(board.size() == 9 && board[0].size() == 9);
+        unsigned short rowBitMask[SUDOKU_SIZE * 3] = { 0 };
+        unsigned short *colBitMask = &rowBitMask[SUDOKU_SIZE], *blockBitMask = &rowBitMask[SUDOKU_SIZE << 1];
 
-        for (int i = 0; i < 9; i++)
-        {
-            memset(rowAcc[i], 0, sizeof(bool)* 9);
-            memset(colAcc[i], 0, sizeof(bool)* 9);
-            memset(blockAcc[i], 0, sizeof(bool)* 9);
-        }
-
-        int blockIndex = -1;
-        int curNum;
-        for (int i = 0; i < 9; i++)
-        {
-            for (int j = 0; j < 9; j++)
-            {
-                if (board[i][j] == '.')
-                    continue;
-
-                blockIndex = getBlockIndex(i, j);
-                curNum = board[i][j] - '0' - 1;
-                if (rowAcc[i][curNum] || colAcc[j][curNum] || blockAcc[blockIndex][curNum])
-                    return false;
-                
-                rowAcc[i][curNum] = colAcc[j][curNum] = blockAcc[blockIndex][curNum] = true;
+        int i = 0, j = 0, blk = -1, curNum = 0;
+        for (i = 0; i < SUDOKU_SIZE; ++i){
+            for (j = 0; j < SUDOKU_SIZE; ++j){
+                if (board[i][j] == '.') continue;
+                blk = (i / 3) * 3 + j / 3;
+                curNum = board[i][j] - '0';
+                //check row mask
+                if (rowBitMask[i] & (1 << curNum)) return false;
+                rowBitMask[i] |= (1 << curNum);
+                //check column mask
+                if (colBitMask[j] & (1 << curNum)) return false;
+                colBitMask[j] |= (1 << curNum);
+                //check block mask
+                if (blockBitMask[blk] & (1 << curNum)) return false;
+                blockBitMask[blk] |= (1 << curNum);
             }
         }
 
         return true;
     }
-
-private:
-    bool    rowAcc[9][9];
-    bool    colAcc[9][9];
-    bool    blockAcc[9][9];
-
-    inline int getBlockIndex(int x, int y)
-    {
-        return 3 * (x / 3) + y / 3;
-    }
 };
-
 
 int _tmain(int argc, _TCHAR* argv[])
 {
