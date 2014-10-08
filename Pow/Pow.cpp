@@ -10,55 +10,30 @@ class Solution {
 public:
     double pow(double x, int n) {
         if (n == 0) return 1;
-        if (n == 1) return x;
         if (x == 0) return 0;
+        if (x == 1) return 1;
+        if (x == -1) return ((abs(n) & 1) ? -1 : 1);
+        if (n == 1) return x;
+        if (n == -1) return 1 / x;
 
-        int n1 = abs(n);
-        double d = abs(x);
+        bool isNegative = (n < 0 ? true : false);
+        n = (isNegative ? -n : n);
 
-        double result = pow_nonrecursive(d, n1);
-        if (x < 0 && n & 0x1)
-            result = 0 - result;
+        int d = 0, mask = n;
+        while (mask){
+            mask >>= 1;
+            ++d;
+        }
+        mask = (1 << (d - 1));
 
-        if (n >= 0)
-            return result;
-        else
-            return 1.0 / result;
-    }
-
-private:
-    stack<int>  stackA;
-
-    double pow_recursive(double x, int n)
-    {
-        int half = n / 2;
-        double halfResult = pow(x, half);
-        if (n & 0x1)
-            return halfResult*halfResult*x;
-        return halfResult*halfResult;
-    }
-
-    double pow_nonrecursive(double x, int n)
-    {
-        while (n > 1)
-        {
-            stackA.push(n);
-            n = n / 2;
+        double result = 1;
+        while (mask > 0){
+            result = result * result;
+            result *= (mask & n) ? x : 1;
+            mask >>= 1;
         }
 
-        double retResult = x;
-        while (!stackA.empty())
-        {
-            n = stackA.top();
-            stackA.pop();
-
-            if (n & 0x1)
-                retResult = retResult*retResult*x;
-            else
-                retResult = retResult*retResult;
-        }
-
-        return retResult;        
+        return isNegative ? 1 / result : result;
     }
 };
 
