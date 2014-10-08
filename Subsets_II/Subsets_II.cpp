@@ -9,54 +9,42 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int> > subsetsWithDup(vector<int> &S) {
-        vector<vector<int>>	subsetCollection;
-        vector<int>	singleSubSet;
-        subsetCollection.push_back(singleSubSet);
+    vector<vector<int>> subsetsWithDup(vector<int> &S) {
+        vector<vector<int>> resultArr;
+        int n = S.size(); if (n == 0) return resultArr;
 
-        if (S.size() == 0)
-            return subsetCollection;
-
+        vector<int> singleRes;
+        resultArr.push_back(singleRes);
         sort(S.begin(), S.end());
 
-        int	numCount = S.size();
-
-        for (int i = numCount - 1; i >= 0; i--)
-        {
-            int prevSize = subsetCollection.size();
-
-            int curStop = i - 1;
-            while (curStop >= 0 && S[i] == S[curStop])
-                curStop--;
-
-            int sameCount = i - curStop;
-            int repeatNum;
-
-            for (int j = 0; j < prevSize; j++)
-            {
-                repeatNum = sameCount;
-                while (repeatNum)
-                {
-                    singleSubSet.clear();
-                    for (int k = 0; k < repeatNum; k++)
-                        singleSubSet.push_back(S[i]);
-                    CopySet(singleSubSet, subsetCollection[j]);
-                    subsetCollection.push_back(singleSubSet);
-                    repeatNum--;
-                }
-            }
-
-            i = curStop + 1;
+        int curPos = 0, repeatCnt = 0, orgSize = 0;
+        while (curPos < n){
+            repeatCnt = getRepeatCnt(S, curPos);
+            orgSize = resultArr.size();
+            for (int i = 1; i <= repeatCnt; ++i)
+                combineResult(resultArr, resultArr, orgSize, S[curPos], i);
+            curPos += repeatCnt;
         }
 
-        return subsetCollection;
+        return resultArr;
     }
 
 private:
-    inline void CopySet(vector<int> &dest, const vector<int>& src)
-    {
-        for (int i = 0; i < src.size(); i++)
-            dest.push_back(src.at(i));
+    int getRepeatCnt(const vector<int> &S, int start){
+        int cnt = 1, orgVal = S[start++];
+        while (start < S.size() && S[start] == orgVal){
+            ++start; ++cnt;
+        }
+        return cnt;
+    }
+
+    void combineResult(vector<vector<int>> &dest, const vector<vector<int>> &src, int size, int data, int cnt){
+        vector<int> singleRes;
+        for (int i = 0; i < size; ++i){
+            singleRes = src[i];
+            for (int j = 0; j < cnt; ++j) singleRes.push_back(data);
+            dest.push_back(singleRes);
+        }
     }
 };
 
