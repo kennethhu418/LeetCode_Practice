@@ -10,103 +10,26 @@ using namespace std;
 class Solution {
 public:
     void rotate(vector<vector<int> > &matrix) {
-        int n = matrix.size();
-
-        if (n < 2)
-            return;
-
-        assert(matrix[0].size() == n);
-
-        int size = n, x = 0, y = 0;
-        while (size > 1)
-        {
-            RotateBorder(matrix, x, y, size);
-            x++;
-            y++;
-            size -= 2;
-        }
-        
-        return;
+        swapTopDown(matrix);
+        swapDiag(matrix);
     }
 
 private:
-    void RotateBorder(vector<vector<int> > &matrix, int x, int y, int n)
-    {
-        int orgTopRight =0;
-        int times = n - 1;
-
-        while (times > 0)
-        {
-            orgTopRight = matrix[x][y];
-
-            //left column
-            for (int i = 0; i <= n - 2; i++)
-                matrix[x + i][y] = matrix[x + i + 1][y];
-            //bottom row
-            for (int i = 0; i <= n - 2; i++)
-                matrix[x + n - 1][y + i] = matrix[x + n - 1][y + i + 1];
-            //right column
-            for (int i = n - 2; i >= 0; i--)
-                matrix[x + i + 1][y + n - 1] = matrix[x + i][y + n - 1];
-            //top row
-            for (int i = n - 1; i > 1; i--)
-                matrix[x][y + i] = matrix[x][y + i - 1];
-
-            matrix[x][y+1] = orgTopRight;
-            times--;
-        }
-    }
-};
-
-class Solution2 {
-public:
-    void rotate(vector<vector<int> > &matrix) {
+    void swapTopDown(vector<vector<int> > &matrix){
         int n = matrix.size();
-
-        if (n < 2)
-            return;
-
-        assert(matrix[0].size() == n);
-
-        FlipMatrixHorizon(matrix);
-        FlipMatrixDiagnal(matrix);
-
-        return;
-    }
-
-private:
-    inline void FlipMatrixHorizon(vector<vector<int> > &matrix)
-    {
-        int n = matrix.size();
-        int endRow = n / 2;
-        int temp;
-
-        for (int row = 0; row < endRow; row++)
-        {
-            for (int i = 0; i < n; i++)
-            {
-                temp = matrix[row][i];
-                matrix[row][i] = matrix[n - row - 1][i];
-                matrix[n - row - 1][i] = temp;                
-            }
+        int i = 0, j = n - 1;
+        while (i < j){
+            for (int k = 0; k < n; ++k)
+                swap(matrix[i][k], matrix[j][k]);
+            ++i; --j;
         }
     }
 
-    inline void FlipMatrixDiagnal(vector<vector<int> > &matrix)
-    {
+    void swapDiag(vector<vector<int> > &matrix){
         int n = matrix.size();
-        int curStart = -1;
-        int temp;
-
-        for (int row = 0; row < n; row++)
-        {
-            curStart++;
-            for (int col = curStart + 1; col < n; col++)
-            {
-                temp = matrix[row][col];
-                matrix[row][col] = matrix[col][row];
-                matrix[col][row] = temp;
-            }
+        for (int i = 0; i < n; ++i){
+            for (int j = 0; j < i; ++j)
+                swap(matrix[i][j], matrix[j][i]);
         }
     }
 };
