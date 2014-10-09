@@ -4,63 +4,44 @@
 #include "stdafx.h"
 #include <iostream>
 
+typedef unsigned long long BOARDMASK;
+
 class Solution {
-public:
-    int totalNQueens(int n) {
-        if (n < 2)
-            return n;
+private:
+    int mTotalSolutions;
+    BOARDMASK mFullMask;
 
-        bool* colAcc = new bool[n];
-        int*  colInEachRow = new int[n];
-        int   totalN = 0;
-        memset(colAcc, 0, sizeof(bool)*n);
+    void totalNQueens(BOARDMASK colLimitMask, BOARDMASK diagLimitMask1, BOARDMASK diagLimitMask2)
+    {
+        if (colLimitMask == mFullMask){
+            ++mTotalSolutions; return;
+        }
 
-        solveNQueens(totalN, n, n, colAcc, colInEachRow);
-        delete[] colAcc;    delete[] colInEachRow;
-        return totalN;
+        BOARDMASK allowedColMask = mFullMask & ~(colLimitMask | diagLimitMask1 | diagLimitMask2);
+        BOARDMASK curColMask = 0;
+        while (allowedColMask){
+            curColMask = (allowedColMask & (1 + ~allowedColMask));
+            totalNQueens(colLimitMask | curColMask, (diagLimitMask1 | curColMask) << 1, (diagLimitMask2 | curColMask) >> 1);
+            allowedColMask ^= curColMask;
+        }
     }
 
-private:
-    void solveNQueens(int& totalN, int leftQ, int n, bool* colAcc, int* colInEachRow)
-    {
-        if (leftQ == 0)
-        {
-            totalN++;
-            return;
-        }
+public:
+    unsigned long long totalNQueens(int n) {
+        if (n < 2) return n;
 
-        bool fit = false;
-
-        for (int j = 0; j < n; j++)
-        {
-            if (colAcc[j])  continue;
-
-            fit = true;
-            for (int i = 0; i < n - leftQ; i++)
-            {
-                if (abs(n - leftQ - i) == abs(j - colInEachRow[i]))
-                {
-                    fit = false;
-                    break;
-                }
-            }
-
-            if (!fit)
-                continue;
-
-            colAcc[j] = true;
-            colInEachRow[n - leftQ] = j;
-            solveNQueens(totalN, leftQ - 1, n, colAcc, colInEachRow);
-            colAcc[j] = false;
-        }
-
+        mTotalSolutions = 0;
+        BOARDMASK colLimitMask = 0, diagLimitMask1 = 0, diagLimitMask2 = 0;
+        mFullMask = (1 << n) - 1;
+        totalNQueens(colLimitMask, diagLimitMask1, diagLimitMask2);
+        return mTotalSolutions;
     }
 };
 
-int _tmain(int argc, _TCHAR* argv[])
+int main()
 {
-    Solution    s;
-    s.totalNQueens(1);
-	return 0;
+    Solution so;
+    for (int n = 1; n < 31; ++n)
+        std::cout << n << "-Queens solution count is " << so.totalNQueens(n) << std::endl;
+    return 0;
 }
-
