@@ -10,73 +10,61 @@
 using std::string;
 using std::vector;
 
+static const unsigned int MAP_COUNT = 4;
+typedef struct __DigitMappingRecord
+{
+    int     count;
+    char    mapping[MAP_COUNT];
+}DigitMappingRecord;
+
+static const DigitMappingRecord mappingArr[10] = {
+    { 1, { ' ' } }, //0
+    { 1, { ' ' } }, //1
+    { 3, { 'a', 'b', 'c' } }, //2
+    { 3, { 'd', 'e', 'f' } }, //3
+    { 3, { 'g', 'h', 'i' } }, //4
+    { 3, { 'j', 'k', 'l' } }, //5
+    { 3, { 'm', 'n', 'o' } }, //6
+    { 4, { 'p', 'q', 'r', 's' } }, //7
+    { 3, { 't', 'u', 'v' } }, //8
+    { 4, { 'w', 'x', 'y', 'z' } }, //9
+};
+
 class Solution {
 public:
     vector<string> letterCombinations(string digits) {
-        this->size = digits.size();
-        this->digits = digits;
-
-        resultArray.clear();
-        curResult.clear();
-
-        letterCombination(0);
-
-        return resultArray;
-    }
-
-private:
-    vector<string>  resultArray;
-    string  curResult;
-    string  digits;
-    int     size;
-
-    void letterCombination(int curPos)
-    {
-        if (curPos == size)
-        {
-            resultArray.push_back(curResult);
-            return;
+        vector<string> resultArr;
+        int n = digits.size();
+        if (n == 0){
+            resultArr.push_back(""); return resultArr;
         }
 
-        curResult += ' ';
-        int cnt = 0;
-        char startChar = getChar(digits[curPos], cnt);
-        for (size_t i = 0; i < cnt; i++)
-        {
-            curResult[curResult.size() - 1] = startChar + i;
-            letterCombination(curPos + 1);
+        int *indexArr = new int[n];
+        indexArr[0] = 0;
+
+        int curDigit = 0, curNum = 0;
+        string singleComb(n, 'a');
+        while (curDigit >= 0){
+            if (curDigit == n){
+                resultArr.push_back(singleComb);
+                ++indexArr[--curDigit];
+                continue;
+            }
+
+            curNum = digits[curDigit] - '0';
+            if (indexArr[curDigit] == mappingArr[curNum].count){
+                if (curDigit > 0) ++indexArr[curDigit - 1];
+                --curDigit;
+                continue;
+            }
+
+            singleComb[curDigit] = mappingArr[curNum].mapping[indexArr[curDigit]];
+            ++curDigit;
+            if (curDigit < n) indexArr[curDigit] = 0;
         }
 
-        curResult.pop_back();
-    }
-
-    inline char getChar(char num, int& count)
-    {
-        if (num == '0')
-        {
-            count = 1; return ' ';
-        }
-
-        if (num < '2' || num > '9')
-        {
-            assert(0);
-        }
-
-        if (num < '7')
-        {
-            count = 3;
-            return ('a' + 3*(num - '2'));
-        }
-
-        if (num == '7' || num == '9')
-        {
-            count = 4;
-            return (num == '7' ? 'p' : 'w');
-        }
-
-        //num == '8'
-        count = 3;
-        return 't';
+        delete[] indexArr;
+        return resultArr;
     }
 };
 
