@@ -4,56 +4,34 @@
 #include "stdafx.h"
 #include <iostream>
 #include <string>
-#include <assert.h>
 
 using namespace std;
 
 class Solution {
 public:
     string getPermutation(int n, int k) {
-        string  result = "";
-        if (n == 0 || k == 0) return result;
-        if (n == 1) return "1";
-
-        int *   countHolder = new int[n + 1];
-        bool *   isUsed = new bool[n+1];
-        memset(isUsed, 0 , sizeof(bool)*(n+1));
-
-        countHolder[0] = countHolder[1] = 1;
-        for (int i = 2; i <= n; i++)
-            countHolder[i] = (i - 1)*countHolder[i - 1];
-
-        if (k > n*countHolder[n])
-        {
-            delete[] countHolder;
-            delete[] isUsed;
-            return "";
+        if (n == 0) return "";
+        string result(n, '0');
+        if (n == 1) {
+            result[0] = '0' + k;
+            return result;
         }
 
-        int curNum = 0, curIndex = 0, j, i;
-        for (i = n; i >= 1; i--)
-        {
-            curNum = (k - 1) / countHolder[i];
-            k = k - curNum*countHolder[i];
-            curNum++;
+        --k; // 0 based index
+        int base = 1, curIndex = 0;
+        for (int i = 2; i < n; ++i) base *= i;
+        for (int i = 0; i < n; ++i) result[i] = '1' + i;
 
-            curIndex = 0;
-            for (j = 1; j <= n; j++)
-            {
-                if (isUsed[j])
-                    continue;
-                curIndex++;
-                if (curIndex == curNum)                    
-                    break;
-            }
-            assert(j <= n);
-            isUsed[j] = true;
+        char target = '0';
+        for (int i = 0; i < n - 1; ++i){
+            curIndex = k / base;
+            target = result[i + curIndex];
+            for (int j = i + curIndex; j > i; --j) result[j] = result[j - 1];
+            result[i] = target;
 
-            result += (j + '0');
+            k -= base * curIndex;
+            base /= (n - 1 - i);
         }
-
-        delete[] isUsed;
-        delete[] countHolder;
         return result;
     }
 };
